@@ -1,0 +1,141 @@
+# 基础问题系列
+
+> 来源地址:https://www.jianshu.com/p/1904f5ee7470
+
+###  什么是KVO和KVC？  
+- KVC : 键值编码，是Key Value Coding 的简称，cocoa的标准组成部分，是一种可以直接通过字符串的名字(Key)来访问类属性的机制，而不是通过调用Setter方法、Getter方法进行访问
+- KVO：（Key Value Observer）键值观察者，是观察者设计模式的一种具体实现
+- [detail-link](https://www.jianshu.com/p/10408579fae0)
+
+### KVO的缺陷？
+
+- 我们观察的属性必须使用strings定义，编译时不会出现警告
+- 对属性重构，将导致观察代码不可用
+- 复杂的 “if” 语句要求对象正在观察多个值，是因为所有的观察代码通过一个方法来指向
+- 当释放观察者的时候不需要移除观察者。
+- 继承类多层级容易出问题
+
+
+### Swfit和Objective-C的联系，Swift比Objective-C有什么优势？
+- 联系: 
+	- Swift与Objective-C共用同一套运行时环境
+	- 同一个工程，可以同时使用Swift和Objective-C
+	- Objective-C出现过的绝大多数概念，比如引用记数、ARC、属性、协议、接口、初始化、扩展类、命名参数、匿名函数等，在Swift中继续有效（可能只是换了个术语)
+- 优势
+	- Swift容易阅读，语法和文件结构简易化。
+	- Swift更易于维护，文件分离后结构更清晰。
+	- Swift更加安全，它是类型安全的语言。
+	- Swift代码更少，简洁的语法，可以省去大量冗余代码
+	- Swift速度更快，运算性能更高。
+
+### 举例说明Swfit里面有哪些是Objective-C中没有的？
+
+```
+1).swift独有的范围运算符
+a…b 表示 [a,b] 如3…5 就是范围取3，4，5
+2).swift独有的元组类型
+var point = (x:15,y:20.2)
+就是元组名是 point ，里面有两个元素x和y。 有点类似于结构体.
+3).函数的默认参数值
+func addStudent (name:string,age:Int = 20) –>string{}
+设置了默认的年龄为20 所以再调用时只需要写个名字
+addStudent(“zss”)
+要注意的是，使用了默认参数值， 系统会自动生成一个外部参数名。
+想改名字也就要写外部参数名了 即 addStudent(“zss”,age:18)
+4).swift中使用let定义常量,var定义变量
+使用常量,更加安全,不能够被修改,在需要对对象进行修改的时候 只能用var修饰.
+5).if let 、 guard let 的用法
+缩减代码量，安全处理数据逻辑。
+......
+
+```
+
+### 如何对iOS设备进行性能测试？
+- Instruments 是应用程序用来动态跟踪和分析 Mac OS X 和 iOS 代码的实用工具。这是一个灵活而强大的工具,它让你可以跟踪一个或多个进程,并检查收集的数据
+
+### 集成三方框架有哪些方法？
+- 手动集成
+- cocoapods集成
+- carthage (iOS8+)
+
+### 如何解决TableView卡的问题？
+
+* 复用单元格
+* 单元格中的视图尽量都使用不透明的，单元格中尽量少使用动画
+* 图片加载使用异步加载
+* 滑动时不加载图片，停止滑动时开始加载(需要处理快速滑动的空白)
+* 单元格中的内容可以在自定义cell类中的drawRect方法内自己绘制
+* 如非必要，减少reloadData全部cell，只reloadRowsAtIndexPaths
+* 如果cell是动态行高，计算出高度后缓存
+* cell高度固定的话直接使用cell.rowHeight设置高度
+
+
+### 一个动画怎么实现？ 
+>  [CoreAnimation（核心动画）](https://github.com/DevDragonLi/Core-AnimationPerformanceOptimization)
+
+### iOS中常用的数据存储方式有哪些？
+- 综合	
+	- 所有的本地持久化数据存储的本质都是写文件，而且只能存到沙盒中。
+	- 沙盒机制是苹果的一项安全机制，本质就是系统给每个应用分配了一个文件夹来存储数据，而且每个应用只能访问分配给自己的那个文件夹，其他应用的文件夹是不能访问的。
+	- 数据存储的核心都是写文件。主要有四种持久化方式：属性列表，对象序列化，SQLite 数据库, CoreData
+	
+	- 属性列表：应用于少量数据存储，比如登陆的用户信息，应用程序配置信息等。只有NSString ，NSArray，NSDictory，NSData，可以WriteToFile；存储的依旧是plist文件，plist文件可以存储的7种数据类型：array，dictory，string，bool，data，date，number。
+
+- 详细
+	- 对象序列化：最终也是存为属性列表文件，如果程序中，需要存储的时候，直接存储对象比较方便，例如有一个设置类，我们可以把设置类的对象直接存储，就没必要再把里面的每一个属性单独存到文件中。对象序列化是将一个实现了NSCoding协议的对象，通过序列化（NSKeydArchiver）的形式，将对象中的属性抽取出来，转化成二进制流，也就是NSData，NSData可以选择write to file 或者存储到NSUserdefault中。 必须实现的两个方法 encodeWithCoder，initWithCoder。对象序列化的本质就是 对象NSData。
+
+	- SQLite： 适合大量，重复，有规律的数据存储。而且频繁的读取，删除，过滤数据，这种适合使用数据库 (iOS 使用第三方FMDB)
+
+	- CoreData： Sqlite叫做关系型数据库，CoreData 是一中OR-Mapping的思想 ，O代表对象Object，R代表relationship，Mapping代表映射，直译过来就是对象关系映射，其实就是把对象的属性和表中的字段自动映射，简化程序员的负担，以面向对象的方式操作数据库。ORMapping是一种思想，CoreData实现了这种思想，在Java中，hibernate 也是对ORMapping的一种实现，只是利用java实现的。
+	- CoreData 本质还是数据库，只不过使用起来更加面向对象，不关注二维的表结构，而是只需要关注对象，纯面向对象的数据操作方式。我们直接使用数据库的时候，如果向数据库中插入数据，一般是把一个对象的属性和数据库中某个表的字段一一对应，然后把对象的属性存储到具体的表字段中.取一条数据的时候，把表中的一行数据取出，同样需要再封装到对象的属性中，这样的方式有点繁琐，不面向对象。CoreData解决的问题就是不需要这个中间的转换过程，看起来是直接把对象存储进去，并且取出来，不关心表的存在，实际内部帮你做好了映射关系。
+
+
+### 说一说你对SQLite的认识？
+
+- [参考](https://zhuanlan.zhihu.com/p/23911987)
+
+- 性能,需求等方面
+
+### runloop和线程有什么关系？
+
+- 一般来讲，一个线程一次只能执行一个任务，执行完成后线程就会退出
+- 保持程序的持续运行(ios程序为什么能一直活着不会死)
+- 处理app中的各种事件（比如触摸事件、定时器事件【NSTimer】、selector事件【选择器·performSelector···】）
+- 节省CPU资源，提高程序性能，有事情就做事情，没事情就休息
+
+- 重要性
+	- 如果没有Runloop,那么程序一启动就会退出，什么事情都做不了。
+	- 如果有了Runloop，那么相当于在内部有一个事件循环，能够保证程序的持续运行
+	- main函数中的Runloop a 在UIApplication函数内部就启动了一个Runloop 该函数返回一个int类型的值 b 这个默认启动的Runloop是跟主线程相关联的
+
+
+### runloop的mode作用是什么？
+- 五种
+- example ,定时器,等处理需要采取不同的 mode 
+
+### 你一般是如何调试Bug的？
+- 在运行过程中，如果出现EXC_BAD_ACCESS 异常，往往提示的信息很少或者没有提示，启用NSZombieEnabled后在控制台能打印出更多的提示信息，便于debug,请注意，僵尸模式下的调试工作只能在模拟器中实现，我们无法在物理设备上完成这一诊断流程.
+- 异常断点，一般程序crash时Xcode一般会定位到main函数中，得不到详细的crash信息，打上异常断点后就极大可能定位到程序的crash处，利于debug。
+- 一般来说，在创建工程的时候，应该在Build Settings启用Analyze During 'Build'，这样每次编译时都会自动静态分析。这样的话，写完一小段代码之后，就马上知道是否存在内存泄露或其他bug问题，并且可以修bugs。
+- 如果你想在运行的时候查看APP是否存在内存泄露，你可以使用Xcode上instruments工具上的Leaks模块进行内存分析。但是有些内存泄露是很难检查出来，有时只有通过手动覆盖dealloc方法，看它最终有没有调用。
+
+### 描述一个ViewController的生命周期
+* 当我们调用UIViewControlller的view时，
+* 系统首先判断当前的 UIViewControlller是否存在view，如果存在直接返回view，
+* 如果不存在的话，会调用loadview方法，
+* 然后判断loadview方法是否是自定义方法，
+* 如果是自定义方法，就执行自定义方法，
+* 如果不是自定义方法，判断当时视图控制器是否有xib、stroyboard。
+* 如果有xib、stroyboard 就加载xib、stroyboard。
+* 如果没有创建一个空白的view。
+* 调用viewDidLoad方法。
+* 最后返回view
+
+
+
+## 链接
+
+- [面试题系列目录](../README.md)
+- **上一份**: [宝库iOS研发岗面试:参考答案已更新完毕](interview-iOS-5.md)
+- **下一份**: [2018-4月份iOS面试经历](interview-iOS-7-2018-4月份iOS面试经历.md)
+

@@ -1,0 +1,194 @@
+## 2020抖音iOS面试经历(附参考答案)
+
+
+
+> 源地址 : https://www.jianshu.com/p/25ede6308676
+
+> 2020年3月6日
+
+
+### 一面
+1. UIButton不响应事件的原因
+
+1. error 为什么是**
+	- 如果将指向对象的指针传递给函数，则函数只能修改指针所指向的内容。
+	- 如果将指针传递给对象指针，则该函数可以修改指针以指向另一个对象。
+	- 对于NSError，该函数可能希望创建一个新的NSError对象，并向您传递一个指向该NSError对象的指针。因此，您需要双间接，以便指针可以修改。
+	- 总结：**想改变什么值就传入什么值得指针，很明显我们想改变的是NSError *error的值**
+
+
+
+- isEqualTo和hashValue的原理
+
+	- 判等流程
+
+		- 实现一个新的 isEqualTo__ClassName__ 方法，进行实际意义上的值的比较。
+		- 重载 isEqual: 方法进行类和对象的本体性检查，如果失败则回退到上面提到的值比较方法。
+		- 重载 hash 方法，在下一个部分会详细介绍
+
+	- 对于面向对象编程来说，对象相等性检查的主要用例，就是确定一个对象是不是一个集合的成员。为了加快这个过程，子类当中需要实现 hash 方法:
+
+		- 对象相等具有 交换性 （[a isEqual:b] ⇒ [b isEqual:a])
+		- 如果两个对象相等，它们的 hash 值也一定是相等的 ([a isEqual:b] ⇒ [a hash] == [b hash])
+		- 反过来则不然，两个对象的散列值相等不一定意味着它们就是相等的 ([a hash] == [b hash] ¬⇒ [a isEqual:b])
+
+	```
+	//NSObject 使用 isEqual: 这个方法来测试和其他对象的相等性。在它的基类实现中，相等性检查本质上就是对本体性的检查。
+	//两个 NSObject 如果指向了同一个内存地址，那它们就被认为是相同的。
+	@implementation NSObject (Approximate)
+	- (BOOL)isEqual:(id)object {
+	  return self == object;
+	}
+	@end
+	// 一个完整例子
+	@interface Person
+	@property NSString *name;
+	@property NSDate *birthday;
+	
+	- (BOOL)isEqualToPerson:(Person *)person;
+	@end
+	
+	@implementation Person
+	
+	- (BOOL)isEqualToPerson:(Person *)person {
+	  if (!person) {
+	    return NO;
+	  }
+	
+	  BOOL haveEqualNames = (!self.name && !person.name) || [self.name isEqualToString:person.name];
+	  BOOL haveEqualBirthdays = (!self.birthday && !person.birthday) || [self.birthday isEqualToDate:person.birthday];
+	
+	  return haveEqualNames && haveEqualBirthdays;
+	}
+	
+	
+	- (BOOL)isEqual:(id)object {
+	  if (self == object) {
+	    return YES;
+	  }
+	
+	  if (![object isKindOfClass:[Person class]]) {
+	    return NO;
+	  }
+	
+	  return [self isEqualToPerson:(Person *)object];
+	}
+	
+	//对于好奇心旺盛和不畏钻研的同学来说，Mike Ash 的这篇博文解释了如何通过移位操作和旋转可能重复的部分值来进一步优化 hash 函数的实现。
+	- (NSUInteger)hash {
+	  return [self.name hash] ^ [self.birthday hash];
+	}
+	
+	```
+
+- 业务上的问题，为什么用highcharts这个库
+	- 这个面试问题是根据你的项目经验提出的，所以具体问题具体分析。
+
+- webview的优化，webview为什么会加载白屏
+	- webview加载H5页面过程
+		- 初始化 webview -> 请求页面 -> 下载数据 -> 解析HTML -> 请求 js/css 资源 -> dom 渲染 -> 解析 JS 执行 -> JS 请求数据 -> 解析渲染 -> 下载渲染图片
+	- 优化
+		- 前端优化
+			- 合并资源，减少http请求数
+			- 加快请求速度：预解析DNS，减少域名数，并行加载，CDN 分发
+		- 客户端优化
+			- 离线包方案：把一个个功能模块的所有相关页面和资源打包下发
+			- 提前初始化 webview，提供一个全局的webview。添加webview 池重用池，可以用两个或多个 webview 重复使用
+		- 预加载数据
+			- 总结：缓存/预加载/并行，缓存一切网络请求，尽量在用户打开之前就加载好所有内容，能并行做的事不串行做。
+
+- 项目遇到哪些比较困难的问题
+	- 曲线卡顿问题
+	- 全局切换工厂问题
+
+- app 启动优化
+	- App总启动时间 = pre-main耗时 + main耗时，可以通过添加环境变量：DYLD_PRINT_STATISTICS
+
+	- 启动流程
+		- 	pre-main：系统dylib(动态链接库)和自身App可执行文件的加载
+		- main: main方法执行之后到AppDelegate类中的didFinishLaunchingWithOptions方法执行结束前这段时间，主要是构建第一个界面，并完成渲染展示
+	- pre-main优化
+		- 减少类的数量，删除无用代码（未被调用的静态变量、类和方法,抽象重复代码
++load方法中做的事情延迟到+initialize中，或者在+load中做的事情不宜花费过多时间
+		- 减少不必要的framework，或者优化已有的framework
+	- main阶段优化
+		- didFinishLaunchingWithOptions,日志、统计，某个功能的预加载,第三方SDK初始化，可以采用懒加载，或者分阶段启动
+		- 首页启动渲染的页面优化，对于viewDidLoad以及viewWillAppear方法中尽量去尝试少做，晚做，不做，或者采用异步的方式去做。不使用xib或者storyboard，直接使用代码
+
+- TableView卡顿
+	- 要说明ios卡顿&掉帧的原理
+	- 然后针对CPU和GPU渲染超时的解决方案
+
+- 查找两个view的共同父视图
+	> 注意这是要手敲代码的！！！
+	
+	>思考：如果是只需要查找最近的公共父视图呢？
+
+	```objc
+	
+	- (void)findCommonSuperViews:(UIView *)view1 view2:(UIView *)view2
+	{
+	    NSArray * superViews1 = [self findSuperViews:view1];
+	    
+	    NSArray * superViews2 = [self findSuperViews:view2];
+	    
+	    NSMutableArray * resultArray = [NSMutableArray array];
+	    
+	    int i = 0;
+	    
+	    while (i < MIN(superViews1.count, superViews2.count)) {
+	        
+	        UIView *super1 = superViews1[superViews1.count - i - 1];
+	        
+	        UIView *super2 = superViews2[superViews2.count - i - 1];
+	        
+	        if (super1 == super2) {
+	            
+	            [resultArray addObject:super1];
+	            
+	            i++;
+	            
+	        }else{
+	            
+	            break;
+	        }
+	    }
+	    
+	    NSLog(@"resultArray:%@",resultArray);
+	    
+	}
+	- (NSArray <UIView *>*)findSuperViews:(UIView *)view
+	{
+	    UIView * temp = view.superview;
+	    
+	    NSMutableArray * result = [NSMutableArray array];
+	    
+	    while (temp) {
+	        
+	        [result addObject:temp];
+	        
+	        temp = temp.superview;
+	    }
+	    
+	    return result;
+	}
+	
+	```
+
+- 用过设计模式介绍下
+	- 单例模式:保证一个类仅有一个实例，并提供一个访问它的全局访问点。
+		- 优点： 1. 在内存里只有一个实例，减少了内存的开销，尤其是频繁的创建和销毁实例（比如管理学院首页页面缓存）。2. 避免对资源的多重占用（比如写文件操作）。
+		- 缺点： 没有接口，不能继承，与单一职责原则冲突，一个类应该只关心内部逻辑，而不关心外面怎么样来实例化。
+
+	- 工厂模式:定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。
+		- 优点： 1、一个调用者想创建一个对象，只要知道其名称就可以了。 2、扩展性高，如果想增加一个产品，只要扩展一个工厂类就可以。 3、屏蔽产品的具体实现，调用者只关心产品的接口。
+		- 缺点：每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中类的个数成倍增加，在一定程度上增加了系统的复杂度，同时也增加了系统具体类的依赖。这并不是什么好事。
+
+## 链接
+
+- [面试题系列目录](../README.md)
+- **上一份**: [第22份：2020年3月份快手X3岗面试题](interview-iOS-22-20-03快手X3岗面试题.md)
+- **上一份**: [第24份：2020年字节跳动面试题](interview-iOS-22-20-03快手X3岗面试题.md)
+
+
+
