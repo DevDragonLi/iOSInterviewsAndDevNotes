@@ -16,10 +16,10 @@
 > 温馨提示：可从任意份点击进入，每份文档提供 `上一份`和`下一份` 超链，方便查阅。
 
 1. [一份"有点难"的iOS面试题MrPeak2016年:参考答案已更新完毕](./interview-iOS/01一份"有点难"的iOS面试题MrPeak2016年.md)
-2. [interview-iOS-2:参考答案已更新完毕](./interview-iOS/interview-iOS-2.md)                   
-3. [interview-iOS-3:参考答案已更新完毕](./interview-iOS/interview-iOS-3.md)                          
-4. [interview-iOS-4:参考答案已更新完毕](./interview-iOS/interview-iOS-4.md)                          
-5. [宝库iOS研发岗面试2017年:参考答案已更新完毕](./interview-iOS/05interview-iOS宝库iOS开发笔试题2017年.md)
+2. [interview-iOS-2:参考答案已更新完毕](./interview-iOS/02interview-iOS-2.md)                   
+3. [interview-iOS-3:参考答案已更新完毕](./interview-iOS/03interview-iOS-3.md)                          
+4. [interview-iOS-4:参考答案已更新完毕](./interview-iOS/04interview-iOS-4.md)                          
+5. [宝库iOS研发岗面试2017年:参考答案已更新完毕](./interview-iOS/05iOS宝库iOS开发笔试题2017年.md)
 6. [iOS基础问题系列2017年：参考答案已更新完毕](./interview-iOS/06iOS基础问题系列2017年.md)
 7. [深圳iOS面试分享2018年4月:参考答案已更新完毕](./interview-iOS/07深圳iOS面试分享2018年4月.md)
 8. [字节跳动面试题2018年4月:可参考答案已更新完毕](./interview-iOS/08字节跳动面试题：2018年4月.md)
