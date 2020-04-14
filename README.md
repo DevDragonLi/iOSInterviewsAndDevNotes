@@ -5,7 +5,7 @@
 <img src="https://img.shields.io/packagist/l/doctrine/orm.svg">
 </p>
 
->备注：此仓库20年4月10日重建专注于iOS面试题和开发笔记，其他资料已迁至其他repo(超链可查阅)，仅保留2016年后提交log。
+>备注：此仓库2020年4月10日重建后专注于iOS面试题和开发笔记，部分资料已迁至其他repo(超链可查阅)，仅保留2016年后提交日志。
 
 - **[iOS面试题目（可能是迄今为止收集整理较为全而精的）](#iOSinterview)** `ing`
 - **[iOSDevNote](#iOSDevNote)**
