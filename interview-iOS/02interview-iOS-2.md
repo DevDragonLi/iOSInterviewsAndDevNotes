@@ -132,24 +132,24 @@
   - 在程序启动时加上一个异常捕获监听，用来处理程序崩溃时的回调动作UncaughtExceptionHandler是一个函数指针，该函数需要我们实现，可以取自己想要的名字。当程序发生异常崩溃时，该函数会得到调用，这跟C，C++中的回调函数的概念是一样的
 
   ```
-  NSSetUncaughtExceptionHandler (&UncaughtExceptionHandler)。 程序启动代理方法
-  //:collection crash info by DragonLi
-void UncaughtExceptionHandler(NSException *exception) {
-    NSArray *callStack = [exception callStackSymbols];
-    NSString *reason = [exception reason];
-    NSString *name = [exception name];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-    NSString * dateStr = [formatter stringFromDate:[NSDate date]];
-    
-    NSString * iOS_Version = [[UIDevice currentDevice] systemVersion];
-    NSString * PhoneSize    =   NSStringFromCGSize([[UIScreen mainScreen] bounds].size);
-    NSString * App_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString * iPhoneType = @"当前设备名字";
-    NSString *uploadString = @"所有拼接信息";
-    // 存储到本地沙盒.下次启动找寻
-}
+	  NSSetUncaughtExceptionHandler (&UncaughtExceptionHandler)。 程序启动代理方法
+	  //:collection crash info by DragonLi
+	void UncaughtExceptionHandler(NSException *exception) {
+	    NSArray *callStack = [exception callStackSymbols];
+	    NSString *reason = [exception reason];
+	    NSString *name = [exception name];
+	    
+	    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+	    NSString * dateStr = [formatter stringFromDate:[NSDate date]];
+	    
+	    NSString * iOS_Version = [[UIDevice currentDevice] systemVersion];
+	    NSString * PhoneSize    =   NSStringFromCGSize([[UIScreen mainScreen] bounds].size);
+	    NSString * App_Version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+	    NSString * iPhoneType = @"当前设备名字";
+	    NSString *uploadString = @"所有拼接信息";
+	    // 存储到本地沙盒.下次启动找寻
+		}
   
   ```
 
