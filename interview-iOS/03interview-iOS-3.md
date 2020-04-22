@@ -1,18 +1,9 @@
 
 # interview-iOS PartThree (profound understanding) 
 
-> Question list
-
-- SEL和Method和IMP分别说下再谈下对IMP的理解?
-- Autorelease的原理 ?
--  ARC的工作原理
--  weak弱引用的代码逻辑实现?
--  大文件离线下载怎么处理?会遇到哪些问题?又如何解决
--  Socket建立网络连接的步骤
-
-
-
 ## SEL和Method和IMP分别说下再谈下对IMP的理解?
+<details>
+<summary> 参考内容 </summary>
 
 - SEL是“selector”的一个类型，表示一个方法的名字 
 - Method（我们常说的方法）表示一种类型，这种类型与selector和实现(implementation)相关
@@ -41,7 +32,11 @@
         [session finishTasksAndInvalidate];
 ```
 
+</details>
+
 ## Autorelease的原理 ?
+<details>
+<summary> 参考内容 </summary>
 
 - ARC下面,我们使用`@autoreleasepool{}`来使用一个Autoreleasepool,实际上UIKit 通过RunLoopObserver 在RunLoop二次Sleep间Autoreleasepool进行Pop和Push,将这次Loop产生的autorelease对象释放 对编译器会编译大致如下:
 
@@ -55,14 +50,25 @@
 
 - 释放时机: 当前RunLoop迭代结束时候释放.
 
+</details>
+
+
 ## ARC的工作原理
+<details>
+<summary> 参考内容 </summary>
+
 - Automatic Reference Counting，自动引用计数，即ARC,ARC会自动帮你插入retain和release语句,ARC编译器有两部分，分别是前端编译器和优化器
 - 前端编译器:前端编译器会为“拥有的”每一个对象插入相应的release语句。如果对象的所有权修饰符是__strong，那么它就是被拥有的。如果在某个方法内创建了一个对象，前端编译器会在方法末尾自动插入release语句以销毁它。而类拥有的对象（实例变量/属性）会在dealloc方法内被释放。事实上，你并不需要写dealloc方法或调用父类的dealloc方法，ARC会自动帮你完成一切。此外，由编译器生成的代码甚至会比你自己写的release语句的性能还要好，因为编辑器可以作出一些假设。在ARC中，没有类可以覆盖release方法，也没有调用它的必要。ARC会通过直接使用objc_release来优化调用过程。而对于retain也是同样的方法。ARC会调用objc_retain来取代保留消息
 
 - ARC优化器: 虽然前端编译器听起来很厉害的样子，但代码中有时仍会出现几个对retain和release的重复调用。ARC优化器负责移除多余的retain和release语句，确保生成的代码运行速度高于手动引用计数的代码
 
 
+</details>
+
+
 ## weak弱引用的代码逻辑实现?
+<details>
+<summary> 参考内容 </summary>
 
 	```objc
 		objc_storeWeak() 实现 
@@ -157,7 +163,12 @@
 	```
 
 
+</details>
+
+
 ## 大文件离线下载怎么处理?会遇到哪些问题?又如何解决
+<details>
+<summary> 参考内容 </summary>
 
 - NSURLSessionDataTask 大文件离线断点下载 (AFN等框架,旧的connection类已经废弃)
 
@@ -166,70 +177,70 @@
 - 具体实现方法: 
 	- 1.`NSFileHandle` 文件句柄 
 	- 2.`NSOutputStream` 输出流
-
-```objc
-// code copy from jianshu 
-///: 1. NSFileHandle
--(void)URLSession:(NSURLSession *)session dataTask:(nonnull NSURLSessionDataTask *)dataTask 
-didReceiveResponse:(nonnull NSURLResponse *)response 
-completionHandler:(nonnull void (^)(NSURLSessionResponseDisposition))completionHandler {
-      //接受到响应的时候 告诉系统如何处理服务器返回的数据
-      completionHandler(NSURLSessionResponseAllow);
-      //得到请求文件的数据大小
-      self.totalLength = response.expectedContentLength;
-      //拼接文件的全路径
-      NSString *fileName = response.suggestedFilename;
-      NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-      NSString *fullPath = [cachePath stringByAppendingPathComponent:fileName];
-
-      //【1】在沙盒中创建一个空的文件
-      [[NSFileManager defaultManager] createFileAtPath:fullPath contents:nil attributes:nil];
-      //【2】创建一个文件句柄指针指向该文件（默认指向文件开头）
-      self.handle = [NSFileHandle fileHandleForWritingAtPath:fullPath];
-}
--(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
-      //【3】使用文件句柄指针来写数据（边写边移动）
-      [self.handle writeData:data];
-      //累加已经下载的文件数据大小
-      self.currentLength += data.length;
-      //计算文件的下载进度 = 已经下载的 / 文件的总大小
-      self.progressView.progress = 1.0 * self.currentLength / self.totalLength;
-}
--(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
-      //【4】关闭文件句柄
-      [self.handle closeFile];
-}
-///:NSOutputStream
--(void)URLSession:(NSURLSession *)session dataTask:(nonnull NSURLSessionDataTask *)dataTask 
-didReceiveResponse:(nonnull NSURLResponse *)response 
-completionHandler:(nonnull void (^)(NSURLSessionResponseDisposition))completionHandler {
-      //接受到响应的时候 告诉系统如何处理服务器返回的数据
-      completionHandler(NSURLSessionResponseAllow);
-      //得到请求文件的数据大小
-      self.totalLength = response.expectedContentLength;
-      //拼接文件的全路径
-      NSString *fileName = response.suggestedFilename;
-      NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-      NSString *fullPath = [cachePath stringByAppendingPathComponent:fileName];
-
-      //（1）创建输出流，并打开
-      self.outStream = [[NSOutputStream alloc] initToFileAtPath:fullPath append:YES];
-      [self.outStream open];
-}
--(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
-      //（2）使用输出流写数据
-      [self.outStream write:data.bytes maxLength:data.length];
-      //累加已经下载的文件数据大小
-      self.currentLength += data.length;
-      //计算文件的下载进度 = 已经下载的 / 文件的总大小
-      self.progressView.progress = 1.0 * self.currentLength / self.totalLength;
-}
--(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
-      //（3）关闭输出流
-      [self.outStream close];
-}
-
-```
+	
+	```objc
+	// code copy from jianshu 
+	///: 1. NSFileHandle
+	-(void)URLSession:(NSURLSession *)session dataTask:(nonnull NSURLSessionDataTask *)dataTask 
+	didReceiveResponse:(nonnull NSURLResponse *)response 
+	completionHandler:(nonnull void (^)(NSURLSessionResponseDisposition))completionHandler {
+	      //接受到响应的时候 告诉系统如何处理服务器返回的数据
+	      completionHandler(NSURLSessionResponseAllow);
+	      //得到请求文件的数据大小
+	      self.totalLength = response.expectedContentLength;
+	      //拼接文件的全路径
+	      NSString *fileName = response.suggestedFilename;
+	      NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+	      NSString *fullPath = [cachePath stringByAppendingPathComponent:fileName];
+	
+	      //【1】在沙盒中创建一个空的文件
+	      [[NSFileManager defaultManager] createFileAtPath:fullPath contents:nil attributes:nil];
+	      //【2】创建一个文件句柄指针指向该文件（默认指向文件开头）
+	      self.handle = [NSFileHandle fileHandleForWritingAtPath:fullPath];
+	}
+	-(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
+	      //【3】使用文件句柄指针来写数据（边写边移动）
+	      [self.handle writeData:data];
+	      //累加已经下载的文件数据大小
+	      self.currentLength += data.length;
+	      //计算文件的下载进度 = 已经下载的 / 文件的总大小
+	      self.progressView.progress = 1.0 * self.currentLength / self.totalLength;
+	}
+	-(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+	      //【4】关闭文件句柄
+	      [self.handle closeFile];
+	}
+	///:NSOutputStream
+	-(void)URLSession:(NSURLSession *)session dataTask:(nonnull NSURLSessionDataTask *)dataTask 
+	didReceiveResponse:(nonnull NSURLResponse *)response 
+	completionHandler:(nonnull void (^)(NSURLSessionResponseDisposition))completionHandler {
+	      //接受到响应的时候 告诉系统如何处理服务器返回的数据
+	      completionHandler(NSURLSessionResponseAllow);
+	      //得到请求文件的数据大小
+	      self.totalLength = response.expectedContentLength;
+	      //拼接文件的全路径
+	      NSString *fileName = response.suggestedFilename;
+	      NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+	      NSString *fullPath = [cachePath stringByAppendingPathComponent:fileName];
+	
+	      //（1）创建输出流，并打开
+	      self.outStream = [[NSOutputStream alloc] initToFileAtPath:fullPath append:YES];
+	      [self.outStream open];
+	}
+	-(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
+	      //（2）使用输出流写数据
+	      [self.outStream write:data.bytes maxLength:data.length];
+	      //累加已经下载的文件数据大小
+	      self.currentLength += data.length;
+	      //计算文件的下载进度 = 已经下载的 / 文件的总大小
+	      self.progressView.progress = 1.0 * self.currentLength / self.totalLength;
+	}
+	-(void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
+	      //（3）关闭输出流
+	      [self.outStream close];
+	}
+	
+	```
 
 - 开始(resume) | 暂停(suspend) | 取消( | 恢复等
 
@@ -245,8 +256,14 @@ completionHandler:(nonnull void (^)(NSURLSessionResponseDisposition))completionH
 
 - 优化性能(句柄和流一样) 只有第一次接收到响应的时候才需要创建空的文件(lazy load )
 
+</details>
+
 
 ## Socket建立网络连接的步骤
+
+<details>
+<summary> 参考内容 </summary>
+
 
 > 建立Socket连接至少需要一对套接字，其中一个运行于客户端，称为ClientSocket ，另一个运行于服务器端，称为ServerSocket 。套接字之间的连接过程分为三个步骤：服务器监听，客户端请求，连接确认。(知名的框架 AsyncSocket)
 
@@ -292,6 +309,9 @@ NSData   *dataStream  = [@8 dataUsingEncoding:NSUTF8StringEncoding];
 }
 
 ```
+
+</details>
+
 
 
 ## 链接
