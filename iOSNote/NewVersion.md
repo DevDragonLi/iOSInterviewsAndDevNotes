@@ -1,7 +1,7 @@
 
-## [iOS开发者所需要知道的iOS 12](https://www.jianshu.com/p/462b3977e492)
+## iOS开发者所需要知道的iOS 12
 
-> ------
+> https://www.jianshu.com/p/462b3977e492
 
 1、新的开发者指南，禁止应用程序进行挖矿操作；引入14天的免费试用App机制。
 
