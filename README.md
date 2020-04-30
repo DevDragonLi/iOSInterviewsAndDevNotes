@@ -5,7 +5,12 @@
 <img src="https://img.shields.io/packagist/l/doctrine/orm.svg">
 </p>
 
->备注：仅保留2016年后提交日志，此仓库2020年4月10日重建后专注于**iOS面试题和开发笔记**，部分资料已迁至其他repo(超链可查阅)。
+> 备注：此仓库2020/04/10重建，聚焦于**iOS面试题和开发笔记**,仅留存2016年后提交日志。 
+
+>  Stargazers over time 
+
+[![Stargazers over time](https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg)](https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews)
+
 
 - **[iOS面试题目（可能是迄今为止收集整理较为全而精的）](#iOSinterview)** `ing`
 - **[iOSDevNote](#iOSDevNote)**
@@ -14,6 +19,7 @@
 
 ## <a name="iOSinterview"></a> iOS面试题目列表
 > 温馨提示：可从任意份点击进入，每份文档提供 `上一份`和`下一份` 超链，方便查阅。
+> 大部分文档面试题答案采取`折叠`方式展示。
 
 1. [一份"有点难"的iOS面试题MrPeak2016年:参考答案已更新完毕](./interview-iOS/01一份"有点难"的iOS面试题MrPeak2016年.md)
 2. [interview-iOS-2:参考答案已更新完毕](./interview-iOS/02interview-iOS-2.md)                   
@@ -35,7 +41,7 @@
 18. [苏州蜗牛iOS开发面试题2018年春：](./interview-iOS/18苏州蜗牛iOS开发面试题2018年春.md)
 19. [**新浪公司iOS面试题2019年6月**：参考答案已更新完毕](./interview-iOS/19新浪公司iOS面试题2019年6月.md)
 20. [阿里字节一套高效的iOS面试题2020年2月：更新ing](./interview-iOS/20阿里字节一套高效的iOS面试题2020年2月.md)                          
-21. [出一套iOS高级面试题：J_Knight_:参考答案已更新](./interview-iOS/21出一套iOS高级面试题2018年7月.md)                          
+21. [**出一套iOS高级面试题：J_Knight_**:参考答案已更新](./interview-iOS/21出一套iOS高级面试题2018年7月.md)                          
 22. [快手X3岗面试题2020年3月：参考答案已更新](./interview-iOS/22快手X3岗面试题2020年3月.md)
 23. [抖音面试题2020年3月：参考答案已更新](./interview-iOS/23抖音面试题2020年3月.md)
 24. [阿里iOS五轮面经2019年10月](./interview-iOS/24阿里iOS五轮面经2019年10月.md)
