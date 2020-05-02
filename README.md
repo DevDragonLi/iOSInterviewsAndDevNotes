@@ -1,6 +1,10 @@
 # iOS Interviews,DevNotes 
 </p>
 <p align='left'>
+<img src="https://img.shields.io/github/stars/DevDragonLi/iOSInterviewsAndDevNotes.svg">
+<img src="https://img.shields.io/github/forks/DevDragonLi/iOSInterviewsAndDevNotes.svg">
+<img src="https://img.shields.io/badge/build-passing-brightgreen.svg">
+<img src="https://img.shields.io/badge/platform-iOS-ff69b4.svg">
 <img src="https://img.shields.io/badge/PR-welcome%20!-brightgreen.svg?colorA=a0cd34">
 <img src="https://img.shields.io/packagist/l/doctrine/orm.svg">
 </p>
