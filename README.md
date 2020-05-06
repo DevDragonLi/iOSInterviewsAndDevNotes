@@ -42,7 +42,7 @@
 15. [腾讯社招iOS面试记录2018年7月](./interview-iOS/15腾讯社招iOS面试记录2018年7月.md)                          
 16. [**腾讯音乐iOS面试题2018年7月**](./interview-iOS/16腾讯音乐iOS面试题2018年7月.md)                          
 17. [阿里网易蘑菇街同花顺等面试题2018年7月](./interview-iOS/17阿里网易蘑菇街同花顺等面试题2018年7月.md)                           
-18. [苏州蜗牛iOS开发面试题2018年春：](./interview-iOS/18苏州蜗牛iOS开发面试题2018年春.md)
+18. [苏州蜗牛iOS开发面试题2018年春](./interview-iOS/18苏州蜗牛iOS开发面试题2018年春.md)
 19. [**新浪公司iOS面试题2019年6月**：参考答案已更新完毕](./interview-iOS/19新浪公司iOS面试题2019年6月.md)
 20. [阿里字节一套高效的iOS面试题2020年2月：更新ing](./interview-iOS/20阿里字节一套高效的iOS面试题2020年2月.md)                          
 21. [**出一套iOS高级面试题：J_Knight_**:参考答案已更新](./interview-iOS/21出一套iOS高级面试题2018年7月.md)                          
@@ -55,7 +55,7 @@
 | CATEGORY | FILENAME |  
 |:----|:----|
 |iOS技能图谱/技术栈|[iOS技能图谱-byStuQ](./iOSNote/map-MobileDev-iOSDev.md)                          <br>[JSPatch作者博客中的技能栈-图](./images/iOS/iOSDev-bang.png)|
-|iOSDevNote|[**iOS开发架构分享文稿**](./iOSNote/iOS_architecture.pdf)<br>[**掘金客户端体积瘦身**](./iOSNote/iOSAppThin.md)<br>[**iOSDevCodeRepo**](https://github.com/DevDragonLi/iOSDevDemo)<br>[Core Animation框架结构及性能调优11张大图详解](https://github.com/DevDragonLi/Core-AnimationPerformanceOptimization)<br>[iOS_StaticLibrary](./iOSNote/iOS_StaticLibrary.md)<br>[iOS经典Crash分析与总结- QQ`MelonTeam`](https://github.com/DevDragonLi/iOSDevDemo)<br>[iOS核心动画高级技巧阅读笔记(**性能调优**,**高效绘制**,**图像IO**,**图层性能**)](./iOSNote/iOSCoreAnimationNote.md)<br>[单元测试概述](./iOSNote/UnitTesting.md)<br>[iOS_Article_List](./iOSNote/iOS_Collection_article_List.md)<br>[**iOS版本新特性**](./iOSNote/NewVersion.md)|
+|iOSDevNote|[**iOS开发架构分享文稿**](./iOSNote/iOS_architecture.pdf)<br>[**掘金客户端体积瘦身**](./iOSNote/iOSAppThin.md)<br>[**iOSDevCodeRepo**](https://github.com/DevDragonLi/iOSDevDemo)<br>[Core Animation框架结构及性能调优11张大图详解](https://github.com/DevDragonLi/Core-AnimationPerformanceOptimization)<br>[iOS_StaticLibrary](./iOSNote/iOS_StaticLibrary.md)<br>[iOS经典Crash分析与总结- QQ`MelonTeam`](https://github.com/DevDragonLi/iOSDevDemo)<br>[iOS核心动画高级技巧阅读笔记(**性能调优**,**高效绘制**,**图像IO**,**图层性能**)](./iOSNote/iOSCoreAnimationNote.md)<br>[单元测试概述](./iOSNote/UnitTesting.md)<br>[iOS_Article_List](./iOSNote/iOS_Collection_article_List.md)<br>[**iOS版本新特性**](./iOSNote/NewVersion.md)<br>[**适配暗黑模式组件Demo**](https://github.com/DevDragonLi/LFLDarkModeKit)|
 |CocoaPods 相关 |[提交个人开源框架之流程](./iOSNote/CocoaPods/cocoapods-podspec.md)<br>[管理库的使用技巧](./iOSNote/CocoaPods/CocoaPodsManageTips.md)<br>[提交私有的框架之流程](./iOSNote/CocoaPods/Pod&&spec.md)<br>[私有库参考Demo](https://github.com/DevDragonLi/iOSDevDemo/tree/master/1-DevDemo/PodPrivate_demo)|
 |开源框架|**[WiFi显示图片高清图;蜂窝显示图片缩略图解析](./iOSNote/Analyze/SDWebImage/网络网络状态不同加载图片.md)**<br>**[MJRefresh源码解析](./iOSNote/Analyze/MJRefresh/MJRefresh.md)**|
 
