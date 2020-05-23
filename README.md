@@ -49,6 +49,7 @@
 22. [快手X3岗面试题2020年3月：参考答案已更新](./interview-iOS/22快手X3岗面试题2020年3月.md)
 23. [抖音面试题2020年3月：参考答案已更新](./interview-iOS/23抖音面试题2020年3月.md)
 24. [阿里iOS五轮面经2019年10月](./interview-iOS/24阿里iOS五轮面经2019年10月.md)
+25. [小米百度bigo滴滴快手等iOS面试题2020年上](./interview-iOS/25小米百度bigo滴滴快手等iOS面试题2020年上.md)
 
 ## <a name="iOSDevNote"></a> iOSDevNote
 
