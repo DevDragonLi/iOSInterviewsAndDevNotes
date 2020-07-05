@@ -6,16 +6,24 @@
 >[题目出处](https://zhuanlan.zhihu.com/p/22834934)
 
 
-## 谈下iOS开发中知道的哪些锁? 哪个性能最差?SD和AFN使用的哪个? 一般开发中你最常用哪个? 哪个锁apple存在问题又是什么问题?
+## 谈下iOS开发中知道的哪些锁? 
+
+> 哪个性能最差?SD和AFN使用的哪个?
+
+>  一般开发中你最常用哪个? 
+
+> 哪个锁apple存在问题又是什么问题?
  
 <details>
 <summary> 参考内容 </summary>
 
 - 我们在使用多线程的时候多个线程可能会访问同一块资源，这样就很容易引发数据错乱和数据安全等问题，这时候就需要我们保证每次只有一个线程访问这一块资源，锁 应运而生
 
-- OSSpinLock 自旋锁 ,存在的问题是, 优先级反转问题,破坏了spinlock
+- `@synchronized` 性能最差,SD和AFN等框架使用这个.
 
-- `@synchronized` 性能最差,但是SD和AFN等其他框架很多使用这个.
+- NSRecursiveLock 和NSLock ：建议使用前者，避免循环调用出现**死锁**
+
+- OSSpinLock 自旋锁 ,存在的问题是, 优先级反转问题,破坏了spinlock
 
 - dispatch_semaphore 信号量 : 保持线程同步为线程加锁
 
@@ -47,7 +55,6 @@ dispatch_semaphore_wait(signal, overTime)：可以理解为 lock,会使得 signa
 dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 +1
 
 ```
-- tips:可结合自身具体项目使用场景描述
 
 </details>
  
@@ -57,7 +64,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 <details>
 <summary> 参考内容 </summary>
 
-- 循环通过pthread_create创建线程，创建s_tfthread对象做为线程句，加入线程数组,s_tftask_content->methord初始化为空函数
+- 循环通过pthread_create创建线程，创建s_tf thread对象做为线程句，加入线程数组,s_tftask_content->methord初始化为空函数
 
 - 创建任务执行函数，执行完通过task初始化函数后，在执行函数中通过pthread_cond_wait信号将当前创建的线程挂起
 
@@ -69,8 +76,8 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 <details>
 <summary> 参考内容 </summary>
 
-- HTTP是无状态的，要维持一个长连接可以用心跳包方式
-- 丢包，沾包 ,实际上http连接进行轮询.(嘀嘀打车早期版本采用的方式)
+- HTTP是无状态的，要维持一个长连接可以用**心跳包**方式
+- 丢包，沾包 ,实际上http连接进行轮询.(滴滴打车较早期版本采用的方式，耗费流量)
 - 定时轮询会存在延迟 用户体验就不好
 
 </details>
@@ -83,7 +90,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 
 	- 安全性:不会引发 server 端的改变 
 	- 幂等:同一个方法请求多次结果相同
-	- 可缓存
+	- 可缓存（Get）
 
 </details>
 
@@ -92,10 +99,10 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 <details>
 <summary> 参考内容 </summary>
 
-- BOOL 类型 修饰符不影响
 - 只是针对取值和赋值线程安全
 	- 数组的初始化，赋值，取值安全
 	- 数组的添加数据元素并非线程安全
+- BOOL 类型 修饰符不受到atomic或者noatomic影响
 </details>
 
 
@@ -122,8 +129,6 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 </details>
 
 
-
-
 ## 如何使用runtime hook一个class的某个方法，又如何hook某个instance的方法？
 
 <details>
@@ -133,7 +138,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 
 - 考虑 hook是否有公开头文件的类，有的话写一个Utility函数，再使用category，
 - 没有的话就建一个类作为新函数载体，然后先为被hook的类增加函数，再替换。
-- 如何hook某个instance的方法，应该可以定义一个函数指针变量(IMP要谈及吧)，hook时将要调用的地址赋给这个变量，调用时把这个变量当作函数来用 (RAC框架 hook 谈及)
+- 如何hook某个instance的方法，应该可以定义一个函数指针变量(IMP)，hook时将要调用的地址赋给这个变量，调用时把这个变量当作函数来用 (参考：RAC框架hook)
 
 </details>
 
@@ -146,10 +151,11 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 - multipart/form-data是当上传文件或者二进制数据和非ASCII数据使用 ,AFN请求如何设置? 
 
 ```objc
-[self.requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"content-type"];
+[requestSerializer setValue:@"multipart/form-data" forHTTPHeaderField:@"content-type"];
 ```
 - form-urlencoded是默认的mime内容编码类型，是通用的，但是它在传输比较大的二进制或者文本数据时效率极低
-- 交互:GET,POST,PUT,PATCH,DELETE等,AFN的PATCH貌似数组存在问题.
+- 交互:GET,POST,PUT,PATCH,DELETE等
+	- AFN的PATCH貌似数组存在问题.
 
 </details>
 
@@ -160,9 +166,9 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 <details>
 <summary> 参考内容 </summary>
 
-- 此类加载,针对小图标,使用场景较多图片.
-- `@autoreleasepool` 如果没有使用局部释放池，并且在主线程，则是当前主线程Runloop一次循环结束前释放。
-- imageWithContentsOfFile 加载适用于大图片,不常用的图片,一般无引用时候,会释放
+- 建议针对小图标/场景出现较多图片（此类方式加载，会缓存到内存）
+- `@autoreleasepool` 如果没有使用局部释放池，**并且在主线程，则是当前主线程Runloop一次循环结束前释放**。
+- imageWithContentsOfFile ： 加载适用于大图片,不常用的图片,一般无引用时候,会释放
 
 </details>
 
@@ -172,9 +178,15 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 <details>
 <summary> 参考内容 </summary>
 
-- 推送、做支付
-- 跳app
-- 后台杀进程的时候、IM、第三方授权分享登录回调情况下等
+- applicationDidBecomeActive
+	- APP首次启动用户授权后，会调用此函数
+	- APP处于激活态
+ - applicationWillEnterForeground：从后台进入前台
+
+- 场景
+	- 推送、做支付
+	- 跳转app
+	- 后台杀进程的时候、IM、第三方授权分享登录回调情况下等
 
 </details>
 
@@ -185,7 +197,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 <summary> 参考内容 </summary>
 
 - 线程中调用exit、pthread_exit、pthread_kill、pthread_cancel
-- NSOperation ,接口设计的cancle 实际上只能取消还未运行的,已经运行的无法取消.
+- NSOperation ,接口设计的cancle **实际上只能取消还未运行的,已经运行的无法取消**.
 
 </details>
 
@@ -203,7 +215,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 - SQLite 3
 
 - CoreData
-- Realm (Swift OC 不可以互操作)
+- Realm 
 
 </details>
 

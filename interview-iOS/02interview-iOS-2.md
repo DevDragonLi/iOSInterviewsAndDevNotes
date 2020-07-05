@@ -144,11 +144,12 @@
  
 </details>
   
-## crash的收集和定位bug的方式谈下
+## crash的收集和定位bug的方式
 <details>
 <summary> 参考内容 </summary>
 
 - iTunes Connect（Manage Your Applications - View Details - Crash Reports),但是前提用户设置->隐私->诊断与用量->诊断与用量数据开启.一般不推荐
+
 - 自己实现应用内崩溃收集，并上传服务器.(收集异常，存储到本地，下次用户打开程序时上传给我们)
   - 在程序启动时加上一个异常捕获监听，用来处理程序崩溃时的回调动作UncaughtExceptionHandler是一个函数指针，该函数需要我们实现，可以取自己想要的名字。当程序发生异常崩溃时，该函数会得到调用，这跟C，C++中的回调函数的概念是一样的
 
@@ -176,7 +177,7 @@
 
 - 第三方收集crash (比如说集成友盟,使用dSYM分析定位代码)
 
-- 上报的方式，时机，策略等
+- 上报的方式，时机，策略（优缺点）等
 
 
 </details>
