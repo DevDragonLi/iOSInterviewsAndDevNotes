@@ -1,6 +1,6 @@
-# CocoaPods提交私有的框架之流程摘要
+# podFile
 
-## base pod 
+## base  
 
 - **cocoapods**: **/Users/`LFL`/.cocoapods/repos**
 
@@ -38,18 +38,6 @@ b.source_files => 'LFLTest/LFLSegumentTool/*'
 子库依赖单独处理
 b.dependecy = 'GitHubSegumentTool'
 end`
-
-### example 
-
-- 私有的远程索引  pod repo add LFLcocoapods URL  部署到`coding` ,`oschina`等
-
-- pod repo remove LFLcocoapods  
-
-- pod repo update LFLcocoapods
-
-- pod spec lint 验证自有库 
-
-- pod repo push LFLTest LFLTest.podspec
 
 
 
