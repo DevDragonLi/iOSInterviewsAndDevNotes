@@ -10,14 +10,11 @@
 
 > 备注：此仓库2020/04/10重建，聚焦于**iOS面试题和开发笔记**,仅留存2016年后提交日志。 
 
->  Stargazers over time 
+> <img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg",width="320",height="188">
 
-<img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg",width="320",height="188">
-
-- **[iOS面试题目（可能是迄今为止东半球收集整理较为全而精的面试题）](#iOSinterview)** `ing`
+- **[iOS面试题目列表（可能是迄今为止东半球收集整理较为全而精的面试题 😁）](#iOSinterview)** `ing`
 - **[iOSDevNote](#iOSDevNote)**
-- **[通用开发技能已迁移，点此](https://github.com/DevDragonLi/DevelopBaseNote)**
-	- Git，markdown ,shell...
+- **[Git，markdown ,shell等已迁移，点此](https://github.com/DevDragonLi/DevelopBaseNote)**
 
 ## <a name="iOSinterview"></a> iOS面试题目列表
 
