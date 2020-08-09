@@ -1,7 +1,7 @@
 
 # 一份"有点难"的iOS面试题：MrPeak 
 
-> Facebook · Software engineer 
+> MrPeak : Facebook  Software engineer 
 
 >[题目出处](https://zhuanlan.zhihu.com/p/22834934)
 
@@ -202,6 +202,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 </details>
 
 ## iOS下所有的本地持久化方案?
+> [相似问题：iOS中常用的数据存储方式有哪些](./06iOS基础问题系列2017年.md)
 
 <details>
 <summary> 参考内容 </summary>

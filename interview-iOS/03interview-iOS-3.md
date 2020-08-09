@@ -1,7 +1,9 @@
 
 # interview-iOS PartThree (profound understanding) 
 
-## SEL和Method和IMP分别说下再谈下对IMP的理解?
+## SEL和Method和IMP？
+> 谈下对IMP的理解?
+
 <details>
 <summary> 参考内容 </summary>
 

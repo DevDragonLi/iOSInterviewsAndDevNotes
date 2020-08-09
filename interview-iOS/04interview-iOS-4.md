@@ -14,15 +14,14 @@
 </details>
 
 ## ReactiveCocoa(RAC)如何防止UIButton短时间内多次重复点击，大概思路? 
+> 背面是这需要有RAC使用经验才可问
 
 <details>
 <summary> 参考内容 </summary>
 
 - 建立一个`flag`或者使用 `filter`
 
-
 - 事件完成 flag重置，否则一直skip或者filter (某个RAC群友抛砖引玉)
-
 
 </details>
 
@@ -32,6 +31,7 @@
 
 - NSTimer ,精度不一定准确
 - GCD 
+- DisplayLink
 - RAC 
 
 	
@@ -83,13 +83,13 @@
 <details>
 <summary> 参考内容 </summary>
 
-> CocoaPods注意点:CocoaPods在pod install以后会生成一个Podfile.lock的文件,这个文件在多人协作开发的时候就不能加入在.gitignore中,因为这个文件会锁定当前各依赖库的版本,就算之后再pod install也不会更改版本,不提交上去的话就可以防止第三方库升级后造成大家各自的第三方库版本不同
+> **Podfile.lock**：在pod install以后会生成一个Podfile.lock的文件,这个文件在多人协作开发的时候就不建议加入在.gitignore中,因为这个文件会锁定当前各依赖库的版本,就算之后再pod install也不会更改版本,不提交上去的话就可以防止第三方库升级后造成大家各自的第三方库版本不同
 
-> **CocoaPods原理** 
-- > 1.Pods项目最终会编译成一个名为libPods.a的文件,主项目只需要依赖这个.a文件即可 
-- > 2.对于资源文件,CocoaPods提供了一个名为Pods-resources.sh的bash脚本,该脚本在每次项目编译的时候都会执行,将第三方的各种资源文件复制到目标目录中
-- > 3.CocoaPods通过一个名为Pods.xcconfig的文件在编译时设置所有的依赖和参数
+### **CocoaPods原理** 
 
+- Pods项目最终会编译成一个名为libPods.a的文件,主项目只需要依赖这个.a文件即可 
+- 对于资源文件,CocoaPods提供了一个名为Pods-resources.sh的bash脚本,该脚本在每次项目编译的时候都会执行,将第三方的各种资源文件复制到目标目录中
+- CocoaPods通过一个名为Pods.xcconfig的文件在编译时设置所有的依赖和参数
 
 </details>
 
@@ -130,6 +130,7 @@
 <summary> 参考内容 </summary>
 
 - 对象的isa指向类，类的isa指向元类（meta class），元类isa指向元类的根类。isa帮助一个对象找到它的方法
+
 - 是一个Class 类型的指针. 每个实例对象有个isa的指针,他指向对象的类，而Class里也有个isa的指针, 指向meteClass(元类)。元类保存了类方法的列表。当类方法被调用时，先会从本身查找类方法的实现，如果没有，元类会向他父类查找该方法。同时注意的是：元类（meteClass）也是类，它也是对象。元类也有isa指针,它的isa指针最终指向的是一个根元类(root meteClass).根元类的isa指针指向本身，这样形成了一个封闭的内循环。
 
 
@@ -140,16 +141,19 @@
 <details>
 <summary> 参考内容 </summary>
 
-- 联机调试 (需要插线,一般而言适用于开发人员)
+- 联机调试 (一般而言适用于开发人员)
+	- 之前需要插线
+	- 后期版本可以无线调试！
 
 - 蒲公英等分发平台(就是需要提供参与app测试人员的设备UDID) 缺点:开发者需要将这些设备的UDID添加到开发者中心，每次有新的测试人员加入，需要重新生成profiles
 
 - TestFlight进行App Beta版测试 (apple 官方,iOS8及以上版本的iOS设备才能运行):
-> 优点: 无需UUID,**外部测试人员的上限是10000人**（2018年后又扩大了测试上限）,只需要参与app测试人员提供一个邮箱 
+	-  优点: 无需UUID,**外部测试人员的上限是10000人**（2018年后又扩大了测试上限）,只需要参与app测试人员提供一个邮箱 
+	-  
 
 </details>
 
-## Xcode8-自动配置开发证书过程?
+## Xcode8开始后自动配置开发证书过程?
 
 <details>
 <summary> 参考内容 </summary>

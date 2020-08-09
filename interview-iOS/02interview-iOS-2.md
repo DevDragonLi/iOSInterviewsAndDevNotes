@@ -60,7 +60,7 @@
 
 > 通常来说，crash产生来源于两种问题：违反iOS系统规则导致的crash和App代码逻辑BUG导致的crash
 
-### 1.应用逻辑的Bug
+### 应用逻辑的Bug
 
 - SEGV：（Segmentation Violation，段违例），无效内存地址，比如空指针，未初始化指针，栈溢出等；
 - SIGABRT：收到Abort信号，可能自身调用abort()或者收到外部发送过来的信号；
@@ -70,7 +70,7 @@
 - SIGPIPE：管道另一端没有进程接手数据；
 常见的崩溃原因基本都是代码逻辑问题或资源问题，比如数组越界，访问野指针或者资源不存在，或资源大小写错误等
 
-### 2.违反iOS系统规则产生crash的三种类型
+### 违反iOS系统规则产生crash的三种类型
 - 内存报警闪退
 	- 当iOS检测到内存过低时，它的VM系统会发出低内存警告通知，尝试回收一些内存；如果情况没有得到足够的改善，iOS会终止后台应用以回收更多内存；最后，如果内存还是不足，那么正在运行的应用可能会被终止掉。在Debug模式下，可以主动将客户端执行的动作逻辑写入一个log文件中，这样程序童鞋可以将内存预警的逻辑写入该log文件，当发生如下截图中的内存报警时，就是提醒当前客户端性能内存吃紧，可以通过Instruments工具中的Allocations 和 Leaks模块库来发现内存分配问题和内存泄漏问题。
 
@@ -83,14 +83,20 @@
 
 </details>  
 
-## SDWebImage 
+## SDWebImage
 
+> [第四份面试题相关点：使用SDWebImage内存爆涨的问题](04interview-iOS-4.md)
+
+>  加载图片的流程
+
+>  Cache是怎么做数据管理的？
+
+> 内部做Decoder的原因 
 
 <details>
 <summary> 参考内容 </summary>
 
-### 1.SDWebImage 加载图片的流程
-
+### 加载图片的流程
 
 1.入口 setImageWithURL:placeholderImage:options: 会先把 placeholderImage 显示，然后 SDWebImageManager 根据 URL 开始处理图片。
 
@@ -133,14 +139,13 @@
 20.SDWebImagePrefetcher 可以预先下载图片，方便后续使用。
 
 
-### 2. SDImageCache是怎么做数据管理的？
+###  SDImageCache是怎么做数据管理的？
 
   SDImageCache分两个部分，一个是内存层面的，一个是硬盘层面的。内存层面的相当是个缓存器，以Key-Value的形式存储图片。当内存不够的时候会清除所有缓存图片。用搜索文件系统的方式做管理，文件替换方式是以时间为单位，剔除时间大于一周的图片文件。当SDWebImageManager向SDImageCache要资源时，先搜索内存层面的数据，如果有直接返回，没有的话去访问磁盘，将图片从磁盘读取出来，然后做Decoder，将图片对象放到内存层面做备份，再返回调用层。
 
 
-### 3.内部做Decoder的原因 (典型的空间换时间)
-  由于UIImage的imageWithData函数是每次画图的时候才将Data解压成ARGB的图像，所以在每次画图的时候，会有一个解压操作，这样效率很低，但是只有瞬时的内存需求。为了提高效率通过SDWebImageDecoder将包装在Data下的资源解压，然后画在另外一张图片上，这样这张新图片就不再需要重复解压了   
-  
+### 内部做Decoder的原因 (典型的空间换时间)
+ - 由于UIImage的imageWithData函数是每次画图的时候才将Data解压成ARGB的图像，所以在每次绘图的时候，**会有一个解压操作，这样效率很低，但是只有瞬时的内存需求**。为了提高效率通过SDWebImageDecoder将包装在Data下的资源解压，然后画在另外一张图片上，这样这张新图片就不再需要重复解压了   
  
 </details>
   
@@ -175,7 +180,7 @@
   
   ```
 
-- 第三方收集crash (比如说集成友盟,使用dSYM分析定位代码)
+- 第三方收集crash (比如说集成Bugly/友盟,使用dSYM符号化并定位代码)
 
 - 上报的方式，时机，策略（优缺点）等
 
