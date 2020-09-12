@@ -1,27 +1,25 @@
 
 # 一份"有点难"的iOS面试题：MrPeak 
 
-> MrPeak : Facebook  Software engineer 
+> MrPeak ： Facebook  Software engineer 
 
->[题目出处](https://zhuanlan.zhihu.com/p/22834934)
+> 题目出处： zhuanlan.zhihu.com/p/22834934
 
 
 ## 谈下iOS开发中知道的哪些锁? 
 
+> 一般开发中你最常用哪个? 
+
 > 哪个性能最差?SD和AFN使用的哪个?
-
->  一般开发中你最常用哪个? 
-
-> 哪个锁apple存在问题又是什么问题?
  
 <details>
 <summary> 参考内容 </summary>
 
 - 我们在使用多线程的时候多个线程可能会访问同一块资源，这样就很容易引发数据错乱和数据安全等问题，这时候就需要我们保证每次只有一个线程访问这一块资源，锁 应运而生
 
-- `@synchronized` 性能最差,SD和AFN等框架使用这个.
+- `@synchronized` 性能最差,SD和AFN等框架内部有使用这个.
 
-- NSRecursiveLock 和NSLock ：建议使用前者，避免循环调用出现**死锁**
+- NSRecursiveLock 和 NSLock ：建议使用前者，避免循环调用出现**死锁**
 
 - OSSpinLock 自旋锁 ,存在的问题是, 优先级反转问题,破坏了spinlock
 
@@ -82,7 +80,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 
 </details>
 
-## http的post和get啥区别
+## HTTP的post和get啥区别
 <details>
 <summary> 参考内容 </summary>
 
@@ -202,7 +200,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 </details>
 
 ## iOS下所有的本地持久化方案?
-> [相似问题：iOS中常用的数据存储方式有哪些](./06iOS基础问题系列2017年.md)
+> [本系列面试题相似问题：iOS中常用的数据存储方式有哪些](./06iOS基础问题系列2017年.md)
 
 <details>
 <summary> 参考内容 </summary>

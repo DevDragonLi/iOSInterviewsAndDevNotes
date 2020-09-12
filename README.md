@@ -22,14 +22,14 @@
 
 > ② 大部分文档面试题答案采取`折叠`方式展示。
 
-1. [一份"有点难"的iOS面试题MrPeak2016年:参考答案已更新完毕](./interview-iOS/01一份"有点难"的iOS面试题MrPeak2016年.md)
-2. [interview-iOS-2:参考答案已更新完毕](./interview-iOS/02interview-iOS-2.md)                   
-3. [interview-iOS-3:参考答案已更新完毕](./interview-iOS/03interview-iOS-3.md)                          
-4. [interview-iOS-4:参考答案已更新完毕](./interview-iOS/04interview-iOS-4.md)                          
-5. [宝库iOS研发岗面试2017年:参考答案已更新完毕](./interview-iOS/05iOS宝库iOS开发笔试题2017年.md)
-6. [iOS基础问题系列2017年：参考答案已更新完毕](./interview-iOS/06iOS基础问题系列2017年.md)
-7. [深圳iOS面试分享2018年4月:参考答案已更新完毕](./interview-iOS/07深圳iOS面试分享2018年4月.md)
-8. [字节跳动面试题2018年4月:可参考答案已更新完毕](./interview-iOS/08字节跳动面试题：2018年4月.md)
+1. [一份"有点难"的iOS面试题MrPeak2016年:参考答案完整✅](./interview-iOS/01一份"有点难"的iOS面试题MrPeak2016年.md)
+2. [interview-iOS-2:参考答案完整✅](./interview-iOS/02interview-iOS-2.md)                   
+3. [interview-iOS-3:参考答案完整✅](./interview-iOS/03interview-iOS-3.md)                          
+4. [interview-iOS-4:参考答案完整✅](./interview-iOS/04interview-iOS-4.md)                          
+5. [宝库iOS研发岗面试2017年:参考答案完整✅](./interview-iOS/05iOS宝库iOS开发笔试题2017年.md)
+6. [iOS基础问题系列2017年：参考答案完整✅](./interview-iOS/06iOS基础问题系列2017年.md)
+7. [深圳iOS面试分享2018年4月:参考答案完整✅](./interview-iOS/07深圳iOS面试分享2018年4月.md)
+8. [字节跳动面试题2018年4月:参考答案完整✅](./interview-iOS/08字节跳动面试题：2018年4月.md)
 9. [头条网易微信阿里美团硕士春招面试题2018年3月](./interview-iOS/09头条网易微信阿里美团硕士春招面试题2018年3月.md)
 10. [美团饿了么面试题2018年4月](./interview-iOS/10美团饿了么面试题2018年4月.md)
 11. [天猫蚂蚁金服百度面试题2018年4月](./interview-iOS/11天猫蚂蚁金服百度面试题2018年4月.md) 
