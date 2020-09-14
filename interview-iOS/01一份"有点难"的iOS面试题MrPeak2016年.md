@@ -5,6 +5,22 @@
 
 > 题目出处： zhuanlan.zhihu.com/p/22834934
 
+-   [谈下iOS开发中知道的哪些锁?](#谈下ios开发中知道的哪些锁)
+-   [iOS下如何实现指定线程数目的线程池?](#ios下如何实现指定线程数目的线程池)
+-   [如何用HTTP实现长连接？](#如何用http实现长连接)
+-   [HTTP的post和get啥区别](#http的post和get啥区别)
+-   [使用atomic一定是线程安全的吗？](#使用atomic一定是线程安全的吗)
+-   [数据库建表的时候索引有什么用？](#数据库建表的时候索引有什么用)
+-   [介绍下iOS设备获取唯一设备号的历史变迁](#介绍下ios设备获取唯一设备号的历史变迁)
+-   [如何使用runtime
+    hook一个class的某个方法，又如何hook某个instance的方法？](#如何使用runtime-hook一个class的某个方法又如何hook某个instance的方法)
+-   [聊下HTTP的POST的body体使用form-urlencoded和multipart/form-data的区别。](#聊下http的post的body体使用form-urlencoded和multipartform-data的区别)
+-   [通过\[UIImage
+    imageNamed:\]生成的对象什么时候被释放？](#通过uiimage-imagenamed生成的对象什么时候被释放)
+-   [applicationWillEnterForeground和applicationDidBecomeActive都会在哪些场景下被调用？举例越多越好。](#applicationwillenterforeground和applicationdidbecomeactive都会在哪些场景下被调用举例越多越好)
+-   [如何终止正在运行的工作线程？](#如何终止正在运行的工作线程)
+-   [iOS下所有的本地持久化方案?](#ios下所有的本地持久化方案)
+
 
 ## 谈下iOS开发中知道的哪些锁? 
 
