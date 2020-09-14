@@ -25,7 +25,7 @@
 </details>
 
 ## ReactiveCocoa(RAC)如何防止UIButton短时间内多次重复点击，大概思路? 
-> 背面是这需要有RAC使用经验才可问
+> 需要有RAC使用经验才可问此题
 
 <details>
 <summary> 参考内容 </summary>
