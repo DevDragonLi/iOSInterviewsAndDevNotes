@@ -1,6 +1,13 @@
 
 # interview-iOS PartThree (profound understanding) 
 
+-   [SEL和Method和IMP？](#sel和method和imp)
+-   [Autorelease的原理 ?](#autorelease的原理)
+-   [ARC的工作原理](#arc的工作原理)
+-   [weak弱引用的代码逻辑实现?](#weak弱引用的代码逻辑实现)
+-   [大文件离线下载怎么处理?会遇到哪些问题?又如何解决](#大文件离线下载怎么处理会遇到哪些问题又如何解决)
+-   [Socket建立网络连接的步骤](#socket建立网络连接的步骤)
+
 ## SEL和Method和IMP？
 > 谈下对IMP的理解?
 

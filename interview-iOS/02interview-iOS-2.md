@@ -1,5 +1,18 @@
 ## interview-iOS -2 
 
+-   [weak修饰的释放则自动被置为nil的实现原理](#weak修饰的释放则自动被置为nil的实现原理)
+-   [HTTPS的加密原理](#https的加密原理)
+-   [网络通讯中加密方式有哪些，各自的原理?](#网络通讯中加密方式有哪些各自的原理)
+-   [开发中iOS缓存的理解](#开发中ios缓存的理解)
+-   [你认为开发中那些导致crash?](#你认为开发中那些导致crash)
+    -   [应用逻辑的Bug](#应用逻辑的bug)
+    -   [违反iOS系统规则产生crash的三种类型](#违反ios系统规则产生crash的三种类型)
+-   [SDWebImage](#sdwebimage)
+    -   [加载图片的流程](#加载图片的流程)
+    -   [SDImageCache是怎么做数据管理的？](#sdimagecache是怎么做数据管理的)
+    -   [内部做Decoder的原因
+        (典型的空间换时间)](#内部做decoder的原因-典型的空间换时间)
+-   [crash的收集和定位bug的方式](#crash的收集和定位bug的方式)
 
 ## weak修饰的释放则自动被置为nil的实现原理
 
