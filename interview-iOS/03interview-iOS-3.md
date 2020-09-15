@@ -328,3 +328,10 @@ NSData   *dataStream  = [@8 dataUsingEncoding:NSUTF8StringEncoding];
 - [面试题系列目录](../README.md)
 - **上一份**: [interview-iOS-2](02interview-iOS-2.md)
 - **下一份**: [interview-iOS-4](04interview-iOS-4.md)
+
+## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
+
+</p>
+<img src="../images/wechat.JPG" width="300" height="300">
+</p>
+

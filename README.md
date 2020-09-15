@@ -63,6 +63,12 @@
 |CocoaPods 相关 |[**cocoapods-plugins**](./iOSNote/CocoaPods/cocoapods-plugins.md)<br>[提交开源框架之流程](./iOSNote/CocoaPods/cocoapods-podspec.md)<br>[管理库的使用技巧](./iOSNote/CocoaPods/cocoapods-podspec.md)<br>[私有源组件化及podfile总结](./iOSNote/CocoaPods/Podfile.md)<br>[私有库参考Demo](https://github.com/DevDragonLi/iOSDevDemo/tree/master/1-DevDemo/PodPrivate_demo)<br>[podspec总结](./iOSNote/CocoaPods/podspec.md)|
 |开源框架|**[WiFi显示图片高清图;蜂窝显示图片缩略图解析](./iOSNote/Analyze/SDWebImage/网络网络状态不同加载图片.md)**<br>**[MJRefresh源码解析](./iOSNote/Analyze/MJRefresh/MJRefresh.md)**|
 
+## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
+
+</p>
+<img src="./images/wechat.JPG" width="300" height="300">
+</p>
+
 ## 欢迎提交 PR / issue
 
 > **Dragonli_52171@163.com**

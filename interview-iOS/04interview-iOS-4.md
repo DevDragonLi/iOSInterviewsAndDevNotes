@@ -203,4 +203,8 @@
 - **上一份**: [interview-iOS-3](interview-iOS-3.md)
 - **下一份**: [宝库iOS开发笔试题2017年:参考答案已更新完毕](05iOS宝库iOS开发笔试题2017年.md)
 
+## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
 
+</p>
+<img src="../images/wechat.JPG" width="300" height="300">
+</p>

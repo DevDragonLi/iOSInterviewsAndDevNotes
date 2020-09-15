@@ -239,3 +239,11 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 
 - [面试题系列目录](../README.md)
 - **下一份**: [interview-iOS-2](02interview-iOS-2.md)
+
+## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
+
+</p>
+<img src="../images/wechat.JPG" width="300" height="300">
+</p>
+
+
