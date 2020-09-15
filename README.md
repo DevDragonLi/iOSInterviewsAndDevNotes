@@ -44,7 +44,7 @@
 18. [苏州蜗牛iOS开发面试题2018年春](./interview-iOS/18苏州蜗牛iOS开发面试题2018年春.md)
 19. [**新浪公司iOS面试题2019年6月**：参考答案完整✅](./interview-iOS/19新浪公司iOS面试题2019年6月.md)
 20. [阿里字节一套高效的iOS面试题2020年2月：参考答案补充完善中🚀](./interview-iOS/20阿里字节一套高效的iOS面试题2020年2月.md)                          
-	 * 目前此Repo为东半球此份题目解答最完整的一份！
+	 * 😁此Repo为东半球此题目**解答最完整的一份**！
 21. [**出一套iOS高级面试题：J_Knight_**:参考答案补充完善中🚀](./interview-iOS/21出一套iOS高级面试题2018年7月.md)                          
 22. [快手X3岗面试题2020年3月：参考答案补充完善中🚀](./interview-iOS/22快手X3岗面试题2020年3月.md)
 23. [抖音面试题2020年3月：参考答案完整✅](./interview-iOS/23抖音面试题2020年3月.md)
@@ -66,7 +66,7 @@
 ## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
 
 </p>
-<img src="./images/wechat.JPG" width="300" height="300">
+<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
 </p>
 
 ## 欢迎提交 PR / issue

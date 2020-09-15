@@ -236,10 +236,11 @@
 
 - [面试题系列目录](../README.md)
 - **上一份**: [阿里iOS五轮面经2019年10月](24阿里iOS五轮面经2019年10月.md)
-- **下一份**: [26腾讯iOS六轮面试分享2020年](26腾讯iOS六轮面试分享2020年.md)
+- **下一份**: [腾讯iOS六轮面试分享2020年](26腾讯iOS六轮面试分享2020年.md)
 
 ## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
 
 </p>
-<img src="../images/wechat.JPG" width="300" height="300">
+<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
+
 </p>

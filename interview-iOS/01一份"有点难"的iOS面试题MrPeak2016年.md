@@ -244,6 +244,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 
 </p>
 <img src="../images/wechat.JPG" width="300" height="300">
+<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
 </p>
 
 
