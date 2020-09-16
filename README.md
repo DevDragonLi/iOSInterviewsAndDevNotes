@@ -12,17 +12,20 @@
 
 > 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹 🤝。
 
-> ![](https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg)  
+</p>
+<img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg" width="520" height="211">
+</p>
 
-- **[iOS面试题目列表（ 可能是迄今为止东半球收集整理较为全而精的面试题 ）](#iOSinterview)**
 - **[iOSDevNote](#iOSDevNote)**
 - **[Git，markdown ,shell等已迁移，点此](https://github.com/DevDragonLi/DevelopBaseNote)**
 
 ## <a name="iOSinterview"></a> iOS面试题目列表
 
-> ① 温馨提示：可从任意份点击进入，每份文档提供 `上一份`和`下一份` 超链方便查阅，并提供面试题问题大纲。
+>  **可能是迄今为止东半球收集整理并解答参考较为全的面试题集合**
 
-> ② 大部分面试题已经更新整理了`答案`并 默认`折叠`方式展示（参考点击即可查阅答案）。
+> ① 温馨提示：可从任意份面试题点击进入，每份文档提供 `上一份`和`下一份` 超链方便查阅，并提供面试题问题大纲。
+
+> ② 大部分面试题已经更新整理了`参考答案`并 默认`折叠`方式展示（参考点击即可查阅答案）。
 
 1. [一份"有点难"的iOS面试题MrPeak2016年:参考答案完整✅](./interview-iOS/01一份"有点难"的iOS面试题MrPeak2016年.md)
 2. [interview-iOS-2:参考答案完整✅](./interview-iOS/02interview-iOS-2.md)                   
@@ -43,8 +46,8 @@
 17. [阿里网易蘑菇街同花顺等面试题2018年7月](./interview-iOS/17阿里网易蘑菇街同花顺等面试题2018年7月.md)                           
 18. [苏州蜗牛iOS开发面试题2018年春](./interview-iOS/18苏州蜗牛iOS开发面试题2018年春.md)
 19. [**新浪公司iOS面试题2019年6月**：参考答案完整✅](./interview-iOS/19新浪公司iOS面试题2019年6月.md)
-20. [阿里字节一套高效的iOS面试题2020年2月：参考答案基本完整✅](./interview-iOS/20阿里字节一套高效的iOS面试题2020年2月.md)                          
-21. [**出一套iOS高级面试题：J_Knight_**:参考答案补充完善中🚀](./interview-iOS/21出一套iOS高级面试题2018年7月.md)                          
+20. **推荐：**[**阿里字节一套高效的iOS面试题2020年2月**：参考答案基本完整✅](./interview-iOS/20阿里字节一套高效的iOS面试题2020年2月.md)                          
+21. [**出一套iOS高级面试题：J_Knight_**:参考答案基本完整✅](./interview-iOS/21出一套iOS高级面试题2018年7月.md)                          
 22. [快手X3岗面试题2020年3月：参考答案补充完善中🚀](./interview-iOS/22快手X3岗面试题2020年3月.md)
 23. [抖音面试题2020年3月：参考答案完整✅](./interview-iOS/23抖音面试题2020年3月.md)
 24. [阿里iOS五轮面经2019年10月](./interview-iOS/24阿里iOS五轮面经2019年10月.md)
@@ -66,6 +69,7 @@
 
 </p>
 <img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
+<img src="./images/wechat.JPG" width="300" height="300">
 </p>
 
 ## 欢迎提交 PR / issue
