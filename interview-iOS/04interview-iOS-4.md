@@ -1,15 +1,15 @@
 # interview-iOS - 4 
 
- -   [用户需要上传和下载一个重要的资料文件，应该如何判断用户本次是否上传成功和下载成功了?](#用户需要上传和下载一个重要的资料文件应该如何判断用户本次是否上传成功和下载成功了)
--   [ReactiveCocoa(RAC)如何防止UIButton短时间内多次重复点击，大概思路?](#reactivecocoarac如何防止uibutton短时间内多次重复点击大概思路)
--   [倒计时如何实现 ？](#倒计时如何实现)
--   [熟悉CocoaPods么？能大概讲一下工作原理么？](#熟悉cocoapods么能大概讲一下工作原理么)
--   [使用SDWebImage内存爆涨的问题](#使用sdwebimage内存爆涨的问题)
--   [isa指针的作用](#isa指针的作用)
--   [测试都有哪些方式?优缺点呢](#测试都有哪些方式优缺点呢)
--   [Xcode8开始后自动配置开发证书过程?](#xcode8开始后自动配置开发证书过程)
--   [项目中的图片上传功能如何实现，为什么使用队列上传，为什么不用异步上传](#项目中的图片上传功能如何实现为什么使用队列上传为什么不用异步上传)
--   [项目中你是怎么处理网络速度慢、中断抖动等网络请求中的问题?](#项目中你是怎么处理网络速度慢中断抖动等网络请求中的问题)
+- [用户需要上传和下载一个重要的资料文件，应该如何判断用户本次是否上传成功和下载成功了?](#用户需要上传和下载一个重要的资料文件应该如何判断用户本次是否上传成功和下载成功了)
+- [ReactiveCocoa(RAC)如何防止UIButton短时间内多次重复点击，大概思路?](#reactivecocoarac如何防止uibutton短时间内多次重复点击大概思路)
+- [倒计时如何实现 ？](#倒计时如何实现)
+- [熟悉CocoaPods么？能大概讲一下工作原理么？](#熟悉cocoapods么能大概讲一下工作原理么)
+- [使用SDWebImage内存爆涨的问题](#使用sdwebimage内存爆涨的问题)
+- [isa指针的作用](#isa指针的作用)
+- [测试都有哪些方式?优缺点呢](#测试都有哪些方式优缺点呢)
+- [Xcode8开始后自动配置开发证书过程?](#xcode8开始后自动配置开发证书过程)
+- [项目中的图片上传功能如何实现，为什么使用队列上传，为什么不用异步上传](#项目中的图片上传功能如何实现为什么使用队列上传为什么不用异步上传)
+- [项目中你是怎么处理网络速度慢、中断抖动等网络请求中的问题?](#项目中你是怎么处理网络速度慢中断抖动等网络请求中的问题)
 
 ## 用户需要上传和下载一个重要的资料文件，应该如何判断用户本次是否上传成功和下载成功了?
 <details>
@@ -25,6 +25,7 @@
 </details>
 
 ## ReactiveCocoa(RAC)如何防止UIButton短时间内多次重复点击，大概思路? 
+
 > 需要有RAC使用经验才可问此题
 
 <details>
@@ -46,46 +47,46 @@
 - RAC 
 
 	
-	```objc
-	-(void)startTime{
-	    __block int timeout=30; //倒计时时间
-	    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-	    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-	    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
-	    dispatch_source_set_event_handler(_timer, ^{
-	        if(timeout<=0){ //倒计时结束，关闭
-	            dispatch_source_cancel(_timer);
-	            dispatch_async(dispatch_get_main_queue(), ^{
-	                //设置界面的按钮显示 根据自己需求设置
-	                [l_timeButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-	                l_timeButton.userInteractionEnabled = YES;
-	            });
-	        }else{
-	            //            int minutes = timeout / 60;
-	            int seconds = timeout % 60;
-	            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
-	            dispatch_async(dispatch_get_main_queue(), ^{
-	                //设置界面的按钮显示 根据自己需求设置
-	                NSLog(@"____%@",strTime);
-	                [l_timeButton setTitle:[NSString stringWithFormat:@"%@秒后重新发送",strTime] forState:UIControlStateNormal];
-	                l_timeButton.userInteractionEnabled = NO;
-	                
-	            });
-	            timeout--;
-	            
-	        }
-	    });
-	    dispatch_resume(_timer);
-	    
-	}
+```objc
+-(void)startTime{
+    __block int timeout=30; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [l_timeButton setTitle:@"发送验证码" forState:UIControlStateNormal];
+                l_timeButton.userInteractionEnabled = YES;
+            });
+        }else{
+            //            int minutes = timeout / 60;
+            int seconds = timeout % 60;
+            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                NSLog(@"____%@",strTime);
+                [l_timeButton setTitle:[NSString stringWithFormat:@"%@秒后重新发送",strTime] forState:UIControlStateNormal];
+                l_timeButton.userInteractionEnabled = NO;
+                
+            });
+            timeout--;
+            
+        }
+    });
+    dispatch_resume(_timer);
+    
+}
 	
-	 [[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]]subscribeNext:^(NSDate * date) {
-	        static NSInter = 60; 
-	        60 --;
-	       //  处理显示逻辑
-	    }];
-	    
-	```
+ [[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]]subscribeNext:^(NSDate * date) {
+        static NSInter = 60; 
+        60 --;
+       //  处理显示逻辑
+    }];
+    
+```
 
 </details>
 
@@ -98,9 +99,30 @@
 
 ### **CocoaPods原理** 
 
-- Pods项目最终会编译成一个名为libPods.a的文件,主项目只需要依赖这个.a文件即可 
-- 对于资源文件,CocoaPods提供了一个名为Pods-resources.sh的bash脚本,该脚本在每次项目编译的时候都会执行,将第三方的各种资源文件复制到目标目录中
-- CocoaPods通过一个名为Pods.xcconfig的文件在编译时设置所有的依赖和参数
+> CocoaPods的原理是将所有的依赖库都放到另一个名为Pods的项目中，然后让主项目依赖Pods项目，这样，源码管理工作都从主项目移到了Pods项目中。Pods项目最终会编译成一个名为libPods.a的文件，主项目只需要依赖这个.a文件即可。
+
+* 运行pre-install hook
+
+* 生成Pod Project
+
+* 将该pod文件添加到工程中
+
+* 添加对应的framework、.a库、bundle等
+
+* 链接头文件，生成Target
+
+* 运行post-install hook
+
+* 生成podfile.lock ，之后生成文件副本mainfest.lock并将其放在Pod文件夹内。（如果出现 The sandbox is not sync with the podfile.lock这种错误，则表示manifest.lock和podfile.lock文件不一致），此时一般需要重新运行pod install命令。
+
+* 配置原有的project文件(add build phase)
+
+* 添加了 Embed Pods Frameworks
+
+* 添加了 Copy Pod Resources 其中，pre-install hook和post-install hook可以理解成回调函数，是在podfile里对于install之前或者之后（生成工程但是还没写入磁盘）可以执行的逻辑，逻辑为：
+
+	* pre_install do |installer| # 做一些安装之前的hook end
+	* post_install do |installer| # 做一些安装之后的hook end 
 
 </details>
 
@@ -112,22 +134,24 @@
 
 - 产生的源码部分如下
 
-	```objc
-	- (UIImage *)diskImageForKey:(NSString *)key {
-	    NSData *data = [self diskImageDataBySearchingAllPathsForKey:key];
-	    if (data) {
-	        UIImage *image = [UIImage sd_imageWithData:data];
-	        image = [self scaledImageForKey:key image:image];
-	        if (self.shouldDecompressImages) {
-	            image = [UIImage decodedImageWithImage:image];
-	        }
-	        return image;
-	    }
-	    else {
-	        return nil;
-	    }
-	}
-	```
+```objc
+
+- (UIImage *)diskImageForKey:(NSString *)key {
+    NSData *data = [self diskImageDataBySearchingAllPathsForKey:key];
+    if (data) {
+        UIImage *image = [UIImage sd_imageWithData:data];
+        image = [self scaledImageForKey:key image:image];
+        if (self.shouldDecompressImages) {
+            image = [UIImage decodedImageWithImage:image];
+        }
+        return image;
+    }
+    else {
+        return nil;
+    }
+}
+
+```
 
 - 在某个VC出栈的时候清除比较合适，因为有可能用户不会再去显示那些图片，但是这些图片依旧占着内存 
 
@@ -197,15 +221,15 @@
 
 </details>
 
+
+### 觉得整理的蛮不错，可以赞赏一下旺仔(收集整理不易，且赞且珍惜)
+
+</p>
+<img src="../images/wechat.JPG" width="300" height="300"><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
+</p>
+
 ## 链接
 
 - [面试题系列目录](../README.md)
 - **上一份**: [interview-iOS-3](03interview-iOS-3.md)
-- **下一份**: [宝库iOS开发笔试题2017年:参考答案已更新完毕](05iOS宝库iOS开发笔试题2017年.md)
-
-## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
-
-</p>
-<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
-<img src="../images/wechat.JPG" width="300" height="300">
-</p>
+- **下一份**: [第五份：宝库iOS开发笔试题2017年:参考答案已更新完毕](05iOS宝库iOS开发笔试题2017年.md)

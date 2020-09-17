@@ -5,21 +5,21 @@
 
 > 题目出处： zhuanlan.zhihu.com/p/22834934
 
--   [谈下iOS开发中知道的哪些锁?](#谈下ios开发中知道的哪些锁)
--   [iOS下如何实现指定线程数目的线程池?](#ios下如何实现指定线程数目的线程池)
--   [如何用HTTP实现长连接？](#如何用http实现长连接)
--   [HTTP的post和get啥区别](#http的post和get啥区别)
--   [使用atomic一定是线程安全的吗？](#使用atomic一定是线程安全的吗)
--   [数据库建表的时候索引有什么用？](#数据库建表的时候索引有什么用)
--   [介绍下iOS设备获取唯一设备号的历史变迁](#介绍下ios设备获取唯一设备号的历史变迁)
--   [如何使用runtime
+- [谈下iOS开发中知道的哪些锁?](#谈下ios开发中知道的哪些锁)
+- [iOS下如何实现指定线程数目的线程池?](#ios下如何实现指定线程数目的线程池)
+- [如何用HTTP实现长连接？](#如何用http实现长连接)
+- [HTTP的post和get啥区别](#http的post和get啥区别)
+- [使用atomic一定是线程安全的吗？](#使用atomic一定是线程安全的吗)
+- [数据库建表的时候索引有什么用？](#数据库建表的时候索引有什么用)
+- [介绍下iOS设备获取唯一设备号的历史变迁](#介绍下ios设备获取唯一设备号的历史变迁)
+- [如何使用runtime
     hook一个class的某个方法，又如何hook某个instance的方法？](#如何使用runtime-hook一个class的某个方法又如何hook某个instance的方法)
--   [聊下HTTP的POST的body体使用form-urlencoded和multipart/form-data的区别。](#聊下http的post的body体使用form-urlencoded和multipartform-data的区别)
--   [通过\[UIImage
+- [聊下HTTP的POST的body体使用form-urlencoded和multipart/form-data的区别。](#聊下http的post的body体使用form-urlencoded和multipartform-data的区别)
+- [通过\[UIImage
     imageNamed:\]生成的对象什么时候被释放？](#通过uiimage-imagenamed生成的对象什么时候被释放)
--   [applicationWillEnterForeground和applicationDidBecomeActive都会在哪些场景下被调用？举例越多越好。](#applicationwillenterforeground和applicationdidbecomeactive都会在哪些场景下被调用举例越多越好)
--   [如何终止正在运行的工作线程？](#如何终止正在运行的工作线程)
--   [iOS下所有的本地持久化方案?](#ios下所有的本地持久化方案)
+- [applicationWillEnterForeground和applicationDidBecomeActive都会在哪些场景下被调用？举例越多越好。](#applicationwillenterforeground和applicationdidbecomeactive都会在哪些场景下被调用举例越多越好)
+- [如何终止正在运行的工作线程？](#如何终止正在运行的工作线程)
+- [iOS下所有的本地持久化方案?](#ios下所有的本地持久化方案)
 
 
 ## 谈下iOS开发中知道的哪些锁? 
@@ -31,13 +31,13 @@
 <details>
 <summary> 参考内容 </summary>
 
-- 我们在使用多线程的时候多个线程可能会访问同一块资源，这样就很容易引发数据错乱和数据安全等问题，这时候就需要我们保证每次只有一个线程访问这一块资源，锁 应运而生
+> 我们在使用多线程的时候多个线程可能会访问同一块资源，这样就很容易引发数据错乱和数据安全等问题，这时候就需要我们保证每次只有一个线程访问这一块资源，锁 应运而生
 
 - `@synchronized` 性能最差,SD和AFN等框架内部有使用这个.
 
 - NSRecursiveLock 和 NSLock ：建议使用前者，避免循环调用出现**死锁**
 
-- OSSpinLock 自旋锁 ,存在的问题是, 优先级反转问题,破坏了spinlock
+- OSSpinLock 自旋锁,存在的问题是:优先级反转问题,破坏了spinlock
 
 - dispatch_semaphore 信号量 : 保持线程同步为线程加锁
 
@@ -78,6 +78,8 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 <details>
 <summary> 参考内容 </summary>
 
+### 回答思路
+
 - 循环通过pthread_create创建线程，创建s_tf thread对象做为线程句，加入线程数组,s_tftask_content->methord初始化为空函数
 
 - 创建任务执行函数，执行完通过task初始化函数后，在执行函数中通过pthread_cond_wait信号将当前创建的线程挂起
@@ -85,6 +87,33 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 - 创建完之后，程序中将会有n个挂起状态的线程，当需要执行新的task的时候查找，我们就可以根据不同的task标志在k_threads中查询出空闲线程，并创建新的s_tftask_content加入s_tfthread的任务列表，通过pthread_cond_signal重新唤醒该线程继续执行任务
 
 </details>
+
+
+### 参考样例实现代码(基于dispatch_semaphore)
+
+<details>
+<summary> 参考内容 </summary>
+
+```
+dispatch_queue_t workConcurrentQueue = dispatch_queue_create("example.code", DISPATCH_QUEUE_CONCURRENT);
+dispatch_queue_t serialQueue = dispatch_queue_create("example.code.task",DISPATCH_QUEUE_SERIAL);
+dispatch_semaphore_t semaphore = dispatch_semaphore_create(3);
+for (NSInteger i = 0; i < 10; i++) {
+dispatch_async(serialQueue, ^{
+dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+dispatch_async(workConcurrentQueue, ^{
+    NSLog(@"thread-info:%@开始执行任务%d",[NSThread currentThread],(int)i);
+    sleep(1);
+    NSLog(@"thread-info:%@结束执行任务%d",[NSThread currentThread],(int)i);
+    dispatch_semaphore_signal(semaphore);});
+});
+}
+NSLog(@"主线程...!");
+
+```
+
+</details>
+
 
 ## 如何用HTTP实现长连接？
 <details>
@@ -117,6 +146,7 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 	- 数组的初始化，赋值，取值安全
 	- 数组的添加数据元素并非线程安全
 - BOOL 类型 修饰符不受到atomic或者noatomic影响
+
 </details>
 
 
@@ -235,16 +265,15 @@ dispatch_semaphore_signal(signal)：可以理解为 unlock,会使得 signal 值 
 </details>
 
 
+### 觉得整理的蛮不错，可以赞赏一下旺仔(收集整理不易，且赞且珍惜)
+
+</p>
+<img src="../images/wechat.JPG" width="300" height="300"><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
+</p>
+
 ## 链接
 
 - [面试题系列目录](../README.md)
 - **下一份**: [interview-iOS-2](02interview-iOS-2.md)
-
-## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
-
-</p>
-<img src="../images/wechat.JPG" width="300" height="300">
-<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
-</p>
 
 

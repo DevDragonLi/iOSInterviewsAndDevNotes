@@ -1,12 +1,12 @@
 
 # interview-iOS PartThree (profound understanding) 
 
--   [SEL和Method和IMP？](#sel和method和imp)
--   [Autorelease的原理 ?](#autorelease的原理)
--   [ARC的工作原理](#arc的工作原理)
--   [weak弱引用的代码逻辑实现?](#weak弱引用的代码逻辑实现)
--   [大文件离线下载怎么处理?会遇到哪些问题?又如何解决](#大文件离线下载怎么处理会遇到哪些问题又如何解决)
--   [Socket建立网络连接的步骤](#socket建立网络连接的步骤)
+- [SEL和Method和IMP？](#sel和method和imp)
+- [Autorelease的原理 ?](#autorelease的原理)
+- [ARC的工作原理](#arc的工作原理)
+- [weak弱引用的代码逻辑实现?](#weak弱引用的代码逻辑实现)
+- [大文件离线下载怎么处理?会遇到哪些问题?又如何解决](#大文件离线下载怎么处理会遇到哪些问题又如何解决)
+- [Socket建立网络连接的步骤](#socket建立网络连接的步骤)
 
 ## SEL和Method和IMP？
 > 谈下对IMP的理解?
@@ -16,8 +16,9 @@
 
 - SEL是“selector”的一个类型，表示一个方法的名字 
 - Method（我们常说的方法）表示一种类型，这种类型与selector和实现(implementation)相关
-- IMP定义为 id (*IMP) (id, SEL, …)。这样说来,IMP是一个指向函数的指针，这个被指向的函数包括id(“self”指针)，调用的SEL（方法名），再加上一些其他参数.说白了IMP就是实现方法。
-- 知名框架AFN源码涉及IMP的代码
+- IMP定义为 **id (*IMP) (id, SEL, …)**。这样说来,**IMP是一个指向函数的指针**，这个被指向的函数包括id(“self”指针)，调用的SEL（方法名），再加上一些其他参数.说白了**IMP就是实现方法**。
+
+> 知名框架AFN源码涉及IMP的代码
 
 ```objc
  NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
@@ -47,15 +48,15 @@
 <details>
 <summary> 参考内容 </summary>
 
-- ARC下面,我们使用`@autoreleasepool{}`来使用一个Autoreleasepool,实际上UIKit 通过RunLoopObserver 在RunLoop二次Sleep间Autoreleasepool进行Pop和Push,将这次Loop产生的autorelease对象释放 对编译器会编译大致如下:
+> ARC下面,我们使用`@autoreleasepool{}`来使用一个Autoreleasepool,实际上UIKit 通过RunLoopObserver 在RunLoop二次Sleep间Autoreleasepool进行Pop和Push,将这次Loop产生的autorelease对象释放 对编译器会编译大致如下:
 
-	```objc
+```objc
 	
-	void *DragonLiContext = objc_ AutoreleasepoolPush();
-	// {} 的 code 
-	objc_ AutoreleasepoolPop(DragonLiContext);
+void *DragonLiContext = objc_ AutoreleasepoolPush();
+// {} 的 code 
+objc_ AutoreleasepoolPop(DragonLiContext);
 	
-	```
+```
 
 - 释放时机: 当前RunLoop迭代结束时候释放.
 
@@ -69,7 +70,7 @@
 - Automatic Reference Counting，自动引用计数，即ARC,ARC会自动帮你插入retain和release语句,ARC编译器有两部分，分别是前端编译器和优化器
 - 前端编译器:前端编译器会为“拥有的”每一个对象插入相应的release语句。如果对象的所有权修饰符是__strong，那么它就是被拥有的。如果在某个方法内创建了一个对象，前端编译器会在方法末尾自动插入release语句以销毁它。而类拥有的对象（实例变量/属性）会在dealloc方法内被释放。事实上，你并不需要写dealloc方法或调用父类的dealloc方法，ARC会自动帮你完成一切。此外，由编译器生成的代码甚至会比你自己写的release语句的性能还要好，因为编辑器可以作出一些假设。在ARC中，没有类可以覆盖release方法，也没有调用它的必要。ARC会通过直接使用objc_release来优化调用过程。而对于retain也是同样的方法。ARC会调用objc_retain来取代保留消息
 
-- ARC优化器: 虽然前端编译器听起来很厉害的样子，但代码中有时仍会出现几个对retain和release的重复调用。ARC优化器负责移除多余的retain和release语句，确保生成的代码运行速度高于手动引用计数的代码
+- ARC优化器: 虽然前端编译器听起来很厉害的样子，但代码中有时仍会出现几个对retain和release的重复调用。ARC优化器负责移除多余的retain和release语句，**确保生成的代码运行速度高于手动引用计数的代码**
 
 
 </details>
@@ -79,97 +80,97 @@
 <details>
 <summary> 参考内容 </summary>
 
-	```objc
-		objc_storeWeak() 实现 
-	// HaveOld:	 true - 变量有值
-	// 			false - 需要被及时清理，当前值可能为 nil
-	// HaveNew:	 true - 需要被分配的新值，当前值可能为 nil
-	// 			false - 不需要分配新值
-	// CrashIfDeallocating: true - 说明 newObj 已经释放或者 newObj 不支持弱引用，该过程需要暂停
-	// 			false - 用 nil 替代存储
-	template bool HaveOld, bool HaveNew, bool CrashIfDeallocating>
-	static id storeWeak(id *location, objc_object *newObj) {
-		// 该过程用来更新弱引用指针的指向
-		// 初始化 previouslyInitializedClass 指针
-	    Class previouslyInitializedClass = nil;
-	    id oldObj;
-	    // 声明两个 SideTable
-	    // ① 新旧散列创建
-	    SideTable *oldTable;
-	    SideTable *newTable;
-		// 获得新值和旧值的锁存位置（用地址作为唯一标示）
-		// 通过地址来建立索引标志，防止桶重复
-		// 下面指向的操作会改变旧值
-	  retry:
-	    if (HaveOld) {
-	    	// 更改指针，获得以 oldObj 为索引所存储的值地址
-	        oldObj = *location;
-	        oldTable = &SideTables()[oldObj];
-	    } else {
-	        oldTable = nil;
-	    }
-	    if (HaveNew) {
-	    	// 更改新值指针，获得以 newObj 为索引所存储的值地址
-	        newTable = &SideTables()[newObj];
-	    } else {
-	        newTable = nil;
-	    }
-		// 加锁操作，防止多线程中竞争冲突
-	    SideTable::lockTwoHaveOld, HaveNew>(oldTable, newTable);
-		// 避免线程冲突重处理
-		// location 应该与 oldObj 保持一致，如果不同，说明当前的 location 已经处理过 oldObj 可是又被其他线程所修改
-	    if (HaveOld  &&  *location != oldObj) {
-	        SideTable::unlockTwoHaveOld, HaveNew>(oldTable, newTable);
-	        goto retry;
-	    }
-	    // 防止弱引用间死锁
-	    // 并且通过 +initialize 初始化构造器保证所有弱引用的 isa 非空指向
-	    if (HaveNew  &&  newObj) {
-	    	// 获得新对象的 isa 指针
-	        Class cls = newObj->getIsa();
-	        // 判断 isa 非空且已经初始化
-	        if (cls != previouslyInitializedClass  &&  
-	            !((objc_class *)cls)->isInitialized()) {
-	        	// 解锁
-	            SideTable::unlockTwoHaveOld, HaveNew>(oldTable, newTable);
-	            // 对其 isa 指针进行初始化
-	            _class_initialize(_class_getNonMetaClass(cls, (id)newObj));
-	            // 如果该类已经完成执行 +initialize 方法是最理想情况
-	            // 如果该类 +initialize 在线程中 
-	            // 例如 +initialize 正在调用 storeWeak 方法
-	            // 需要手动对其增加保护策略，并设置 previouslyInitializedClass 指针进行标记
-	            previouslyInitializedClass = cls;
-				// 重新尝试
-	            goto retry;
-	        }
-	    }
-	    // ② 清除旧值
-	    if (HaveOld) {
-	        weak_unregister_no_lock(&oldTable->weak_table, oldObj, location);
-	    }
-	    // ③ 分配新值
-	    if (HaveNew) {
-	        newObj = (objc_object *)weak_register_no_lock(&newTable->weak_table, 
-	                                                      (id)newObj, location, 
-	                                                      CrashIfDeallocating);
-	        // 如果弱引用被释放 weak_register_no_lock 方法返回 nil 
-	        // 在引用计数表中设置若引用标记位
-	        if (newObj  &&  !newObj->isTaggedPointer()) {
-	        	// 弱引用位初始化操作
-				// 引用计数那张散列表的weak引用对象的引用计数中标识为weak引用
-	            newObj->setWeaklyReferenced_nolock();
-	        }
-	        // 之前不要设置 location 对象，这里需要更改指针指向
-	        *location = (id)newObj;
-	    }
-	    else {
-	        // 没有新值，则无需更改
-	    }
-	    SideTable::unlockTwoHaveOld, HaveNew>(oldTable, newTable);
-	    return (id)newObj;
-	}
+```objc
+	objc_storeWeak() 实现 
+// HaveOld:	 true - 变量有值
+// 			false - 需要被及时清理，当前值可能为 nil
+// HaveNew:	 true - 需要被分配的新值，当前值可能为 nil
+// 			false - 不需要分配新值
+// CrashIfDeallocating: true - 说明 newObj 已经释放或者 newObj 不支持弱引用，该过程需要暂停
+// 			false - 用 nil 替代存储
+template bool HaveOld, bool HaveNew, bool CrashIfDeallocating>
+static id storeWeak(id *location, objc_object *newObj) {
+	// 该过程用来更新弱引用指针的指向
+	// 初始化 previouslyInitializedClass 指针
+    Class previouslyInitializedClass = nil;
+    id oldObj;
+    // 声明两个 SideTable
+    // ① 新旧散列创建
+    SideTable *oldTable;
+    SideTable *newTable;
+	// 获得新值和旧值的锁存位置（用地址作为唯一标示）
+	// 通过地址来建立索引标志，防止桶重复
+	// 下面指向的操作会改变旧值
+  retry:
+    if (HaveOld) {
+    	// 更改指针，获得以 oldObj 为索引所存储的值地址
+        oldObj = *location;
+        oldTable = &SideTables()[oldObj];
+    } else {
+        oldTable = nil;
+    }
+    if (HaveNew) {
+    	// 更改新值指针，获得以 newObj 为索引所存储的值地址
+        newTable = &SideTables()[newObj];
+    } else {
+        newTable = nil;
+    }
+	// 加锁操作，防止多线程中竞争冲突
+    SideTable::lockTwoHaveOld, HaveNew>(oldTable, newTable);
+	// 避免线程冲突重处理
+	// location 应该与 oldObj 保持一致，如果不同，说明当前的 location 已经处理过 oldObj 可是又被其他线程所修改
+    if (HaveOld  &&  *location != oldObj) {
+        SideTable::unlockTwoHaveOld, HaveNew>(oldTable, newTable);
+        goto retry;
+    }
+    // 防止弱引用间死锁
+    // 并且通过 +initialize 初始化构造器保证所有弱引用的 isa 非空指向
+    if (HaveNew  &&  newObj) {
+    	// 获得新对象的 isa 指针
+        Class cls = newObj->getIsa();
+        // 判断 isa 非空且已经初始化
+        if (cls != previouslyInitializedClass  &&  
+            !((objc_class *)cls)->isInitialized()) {
+        	// 解锁
+            SideTable::unlockTwoHaveOld, HaveNew>(oldTable, newTable);
+            // 对其 isa 指针进行初始化
+            _class_initialize(_class_getNonMetaClass(cls, (id)newObj));
+            // 如果该类已经完成执行 +initialize 方法是最理想情况
+            // 如果该类 +initialize 在线程中 
+            // 例如 +initialize 正在调用 storeWeak 方法
+            // 需要手动对其增加保护策略，并设置 previouslyInitializedClass 指针进行标记
+            previouslyInitializedClass = cls;
+			// 重新尝试
+            goto retry;
+        }
+    }
+    // ② 清除旧值
+    if (HaveOld) {
+        weak_unregister_no_lock(&oldTable->weak_table, oldObj, location);
+    }
+    // ③ 分配新值
+    if (HaveNew) {
+        newObj = (objc_object *)weak_register_no_lock(&newTable->weak_table, 
+                                                      (id)newObj, location, 
+                                                      CrashIfDeallocating);
+        // 如果弱引用被释放 weak_register_no_lock 方法返回 nil 
+        // 在引用计数表中设置若引用标记位
+        if (newObj  &&  !newObj->isTaggedPointer()) {
+        	// 弱引用位初始化操作
+			// 引用计数那张散列表的weak引用对象的引用计数中标识为weak引用
+            newObj->setWeaklyReferenced_nolock();
+        }
+        // 之前不要设置 location 对象，这里需要更改指针指向
+        *location = (id)newObj;
+    }
+    else {
+        // 没有新值，则无需更改
+    }
+    SideTable::unlockTwoHaveOld, HaveNew>(oldTable, newTable);
+    return (id)newObj;
+}
 	
-	```
+```
 
 
 </details>
@@ -253,12 +254,12 @@
 
 - 开始(resume) | 暂停(suspend) | 取消( | 恢复等
 
-	```
-	[self.dataTask cancel];
-	//默认情况下取消下载不能进行恢复，若要取消之后还可以恢复，可以清空下载任务，再新建
-	self.dataTask = nil;
+```
+[self.dataTask cancel];
+//默认情况下取消下载不能进行恢复，若要取消之后还可以恢复，可以清空下载任务，再新建
+self.dataTask = nil;
 	
-	```
+```
 
 - **下载进度值发生跳跃错乱** :已经下载的数据 / 文件的总数据，在第一个代理方法中，我们得到的文件大小并不是真正的文件大小，而是剩余未下载的大小，所以在第一次开始下载时，可以得到正确的数据，但是在下载过程中执行其他操作，就会使得到的数据大小发生变化，从而导致下载进度值出现问题 `解决方案`：`文件总大小 = 已经下载的数据 + 剩余未下载的数据` 
 
@@ -321,18 +322,14 @@ NSData   *dataStream  = [@8 dataUsingEncoding:NSUTF8StringEncoding];
 
 </details>
 
+### 觉得整理的蛮不错，可以赞赏一下旺仔(收集整理不易，且赞且珍惜)
 
+</p>
+<img src="../images/wechat.JPG" width="300" height="300"><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
+</p>
 
 ## 链接
 
 - [面试题系列目录](../README.md)
 - **上一份**: [interview-iOS-2](02interview-iOS-2.md)
 - **下一份**: [interview-iOS-4](04interview-iOS-4.md)
-
-## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
-
-</p>
-<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
-<img src="../images/wechat.JPG" width="300" height="300">
-</p>
-

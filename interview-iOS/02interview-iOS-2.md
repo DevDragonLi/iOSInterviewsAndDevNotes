@@ -1,18 +1,18 @@
 ## interview-iOS -2 
 
--   [weak修饰的释放则自动被置为nil的实现原理](#weak修饰的释放则自动被置为nil的实现原理)
--   [HTTPS的加密原理](#https的加密原理)
--   [网络通讯中加密方式有哪些，各自的原理?](#网络通讯中加密方式有哪些各自的原理)
--   [开发中iOS缓存的理解](#开发中ios缓存的理解)
--   [你认为开发中那些导致crash?](#你认为开发中那些导致crash)
-    -   [应用逻辑的Bug](#应用逻辑的bug)
-    -   [违反iOS系统规则产生crash的三种类型](#违反ios系统规则产生crash的三种类型)
--   [SDWebImage](#sdwebimage)
-    -   [加载图片的流程](#加载图片的流程)
-    -   [SDImageCache是怎么做数据管理的？](#sdimagecache是怎么做数据管理的)
-    -   [内部做Decoder的原因
+- [weak修饰的释放则自动被置为nil的实现原理](#weak修饰的释放则自动被置为nil的实现原理)
+- [HTTPS的加密原理](#https的加密原理)
+- [网络通讯中加密方式有哪些，各自的原理?](#网络通讯中加密方式有哪些各自的原理)
+- [开发中iOS缓存的理解](#开发中ios缓存的理解)
+- [你认为开发中那些导致crash?](#你认为开发中那些导致crash)
+    - [应用逻辑的Bug](#应用逻辑的bug)
+    - [违反iOS系统规则产生crash的三种类型](#违反ios系统规则产生crash的三种类型)
+- [SDWebImage](#sdwebimage)
+    - [加载图片的流程](#加载图片的流程)
+    - [SDImageCache是怎么做数据管理的？](#sdimagecache是怎么做数据管理的)
+    - [内部做Decoder的原因
         (典型的空间换时间)](#内部做decoder的原因-典型的空间换时间)
--   [crash的收集和定位bug的方式](#crash的收集和定位bug的方式)
+- [Crash的收集和定位bug的方式](#crash的收集和定位bug的方式)
 
 ## weak修饰的释放则自动被置为nil的实现原理
 
@@ -23,7 +23,7 @@
 - Weak表是Hash表，Key是所指对象的地址，Value是Weak指针地址的数组
 - 在对象被回收的时候，经过层层调用，会最终触发下面的方法将所有Weak指针的值设为nil。
 - runtime源码，objc-weak.m 的 arr_clear_deallocating 函数
-- weak指针的使用涉及到Hash表的增删改查，有一定的性能开销.
+- weak指针的使用涉及到Hash表的增删改查，**有一定的性能开销**.
 
 </details>
 
@@ -201,15 +201,15 @@
 </details>
 
 
+### 觉得整理的蛮不错，可以赞赏一下旺仔(收集整理不易，且赞且珍惜)
+
+</p>
+<img src="../images/wechat.JPG" width="300" height="300"><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
+</p>
+
+
 ## 链接
 
 - [面试题系列目录](../README.md)
-- **上一份**: [01一份"有点难"的iOS面试题MrPeak2016年](01一份"有点难"的iOS面试题MrPeak2016年.md)
-- **下一份**: [interview-iOS-3](03interview-iOS-3.md)
-
-## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
-
-</p>
-<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">
-<img src="../images/wechat.JPG" width="300" height="300">
-</p>
+- **上一份**: [第一份：一份"有点难"的iOS面试题MrPeak2016年](01一份"有点难"的iOS面试题MrPeak2016年.md)
+- **下一份**: [第三份：interview-iOS-3](03interview-iOS-3.md)
