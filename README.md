@@ -10,22 +10,22 @@
 
 > 备注：此仓库2020/04/10重建，聚焦于**iOS面试题和开发笔记**,仅留存(2020年前)提交日志。 
 
-> 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹 🤝。
+> 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹 🤝 🍺。
 
 </p>
 <img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg" width="520" height="211">
 </p>
 
 - **[iOSDevNote](#iOSDevNote)**
-- **[Git，markdown ,shell等已迁移，点此](https://github.com/DevDragonLi/DevelopBaseNote)**
+- **[Git，markdown ,shell相关已迁移此处](https://github.com/DevDragonLi/DevelopBaseNote)**
 
 ## <a name="iOSinterview"></a> iOS面试题目列表
 
->  **可能是迄今为止东半球收集整理并解答参考较为全的面试题集合**
+>  **已是迄今为止东半球收集整理并解答参考最为全的面试题集合**
 
-> ① 温馨提示：可从任意份面试题点击进入，每份文档提供 `上一份`和`下一份` 超链方便查阅，并提供面试题问题大纲。
+> ① 温馨提示：可任意份面试题点进，每份文档均提供 `上/下一份` 超链方便查阅，并提供大纲超链 😁。
 
-> ② 大部分面试题已经更新整理了`参考答案`并 默认`折叠`方式展示（参考点击即可查阅答案）。
+> ② 标注的面试题已经更新并整理`参考答案` 默认`折叠`方式展示（参考点击即可查阅答案）
 
 1. [一份"有点难"的iOS面试题MrPeak2016年:参考答案完整✅](./interview-iOS/01一份"有点难"的iOS面试题MrPeak2016年.md)
 2. [interview-iOS-2:参考答案完整✅](./interview-iOS/02interview-iOS-2.md)                   
@@ -53,6 +53,7 @@
 24. [阿里iOS五轮面经2019年10月](./interview-iOS/24阿里iOS五轮面经2019年10月.md)
 25. [小米百度bigo滴滴快手等iOS面试题2020年上：参考答案补充完善中🚀](./interview-iOS/25小米百度bigo滴滴快手等iOS面试题2020年上.md)
 26. [腾讯iOS六轮面试分享2020年](./interview-iOS/26腾讯iOS六轮面试分享2020年.md)
+27. [抖音快手等面试题2020年9月](./interview-iOS/27抖音快手等面试题2020年9月.md)
 
 
 ## <a name="iOSDevNote"></a> iOSDevNote
