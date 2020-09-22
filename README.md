@@ -1,4 +1,5 @@
 # iOS Interviews,DevNotes 
+
 </p>
 <p align='left'>
 <img src="https://img.shields.io/github/stars/DevDragonLi/iOSInterviewsAndDevNotes.svg">
@@ -8,9 +9,9 @@
 <img src="https://img.shields.io/packagist/l/doctrine/orm.svg">
 </p>
 
-> 备注：此仓库2020/04/10重建，聚焦于**iOS面试题和开发笔记**,仅留存(2020年前)提交日志。 
+> 聚焦于**iOS开发面试题和开发笔记** 
 
-> 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹 🤝 🍺。
+> 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹🤝。
 
 </p>
 <img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg" width="520" height="211">
@@ -21,11 +22,11 @@
 
 ## <a name="iOSinterview"></a> iOS面试题目列表
 
->  **已是迄今为止东半球收集整理并解答参考最为全的面试题集合**
+> **已是迄今为止东半球收集并整理参考解答最为全的面试题集合**
 
-> ① 温馨提示：可任意份面试题点进，每份文档均提供 `上/下一份` 超链方便查阅，并提供大纲超链 😁。
+> ① 温馨提示：可任意份点进，文档均提供`上/下一份`超链方便查阅，并提供大纲超链😁。
 
-> ② 标注的面试题已经更新并整理`参考答案` 默认`折叠`方式展示（参考点击即可查阅答案）
+> ② 已更新并整理`参考答案` 默认`折叠`展示（点击可查阅）
 
 1. [一份"有点难"的iOS面试题MrPeak2016年:参考答案完整✅](./interview-iOS/01一份"有点难"的iOS面试题MrPeak2016年.md)
 2. [interview-iOS-2:参考答案完整✅](./interview-iOS/02interview-iOS-2.md)                   
@@ -44,7 +45,7 @@
 15. [腾讯社招iOS面试记录2018年7月：参考答案完整✅](./interview-iOS/15腾讯社招iOS面试记录2018年7月.md)                          
 16. [**腾讯音乐iOS面试题2018年7月**:部分提示解答模式✅](./interview-iOS/16腾讯音乐iOS面试题2018年7月.md)                          
 17. [阿里网易蘑菇街同花顺等面试题2018年7月](./interview-iOS/17阿里网易蘑菇街同花顺等面试题2018年7月.md)                           
-18. [苏州蜗牛iOS开发面试题2018年春](./interview-iOS/18苏州蜗牛iOS开发面试题2018年春.md)
+18. [苏州蜗牛iOS开发面试题2018年春:一面题目解答完毕✅](./interview-iOS/18苏州蜗牛iOS开发面试题2018年春.md)
 19. [**新浪公司iOS面试题2019年6月**：参考答案完整✅](./interview-iOS/19新浪公司iOS面试题2019年6月.md)
 20. **推荐：**[**阿里字节一套高效的iOS面试题2020年2月**：参考答案基本完整✅](./interview-iOS/20阿里字节一套高效的iOS面试题2020年2月.md)                          
 21. [**出一套iOS高级面试题：J_Knight_**:参考答案基本完整✅](./interview-iOS/21出一套iOS高级面试题2018年7月.md)                          
