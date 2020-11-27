@@ -13,9 +13,7 @@
 
 > 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹🤝。
 
-</p>
-<img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg" width="520" height="211">
-</p>
+<img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg" width="688" height="211">
 
 - **[iOSDevNote](#iOSDevNote)**
 - **[Git，markdown ,shell相关已迁移此处](https://github.com/DevDragonLi/DevelopBaseNote)**
@@ -64,15 +62,15 @@
 | CATEGORY | FILENAME |  
 |:----|:----|
 |iOS技能图谱/技术栈|[iOS技能图谱-byStuQ](./iOSNote/map-MobileDev-iOSDev.md)                          <br>[JSPatch作者博客中的技能栈-图](./images/iOS/iOSDev-bang.png)|
-|iOS开发相关shell脚本|[DevelopBaseNote/shell](https://github.com/DevDragonLi/DevelopBaseNote#shell)|
-|iOSDevNote|[**ProtocolServiceKit组件通信中间件**](https://github.com/DevDragonLi/ProtocolServiceKit)<br>[**Dark Mode适配组件**](https://github.com/DevDragonLi/LFLDarkModeKit)<br>[iOS项目完全解耦的**Debug菜单中心组件**](https://github.com/DevDragonLi/iOSDebugKit)<br>[**iOS开发架构分享文稿**](./iOSNote/iOS_architecture.pdf)<br>[**掘金客户端体积瘦身**](./iOSNote/iOSAppThin.md)<br>[**iOSDevCodeRepo**](https://github.com/DevDragonLi/iOSDevDemo)<br>[Core Animation框架结构及性能调优11张大图详解](https://github.com/DevDragonLi/Core-AnimationPerformanceOptimization)<br>[iOS_StaticLibrary](./iOSNote/iOS_StaticLibrary.md)<br>[iOS经典Crash分析与总结- QQ`MelonTeam`](https://github.com/DevDragonLi/iOSDevDemo)<br>[iOS核心动画高级技巧阅读笔记(**性能调优**,**高效绘制**,**图像IO**,**图层性能**)](./iOSNote/iOSCoreAnimationNote.md)<br>[单元测试概述](./iOSNote/UnitTesting.md)|
+|iOS开发相关shell脚本|[Pod自动化更新脚本&&组件校验脚本](https://github.com/DevDragonLi/DevelopBaseNote#shell)<br>[项目依赖子组件批量更新克隆脚本](https://github.com/DevDragonLi/DevelopBaseNote#shell)|
+|iOSDevNote|[**东半球效率最高的iOS组件通信中间件**](https://github.com/DevDragonLi/ProtocolServiceKit)<br>[**DarkMode适配组件**](https://github.com/DevDragonLi/LFLDarkModeKit)<br>[iOS项目完全解耦**Debug菜单中心组件**](https://github.com/DevDragonLi/iOSDebugKit)<br>[**iOS开发架构分享文稿**](./iOSNote/iOS_architecture.pdf)<br>[**掘金客户端体积瘦身**](./iOSNote/iOSAppThin.md)<br>[**iOSDevCodeRepo**](https://github.com/DevDragonLi/iOSDevDemo)<br>[Core Animation框架结构及性能调优11张大图详解](https://github.com/DevDragonLi/Core-AnimationPerformanceOptimization)<br>[iOS_StaticLibrary](./iOSNote/iOS_StaticLibrary.md)<br>[iOS经典Crash分析与总结- QQ`MelonTeam`](https://github.com/DevDragonLi/iOSDevDemo)<br>[iOS核心动画高级技巧阅读笔记(**性能调优**,**高效绘制**,**图像IO**,**图层性能**)](./iOSNote/iOSCoreAnimationNote.md)<br>[单元测试概述](./iOSNote/UnitTesting.md)|
 |CocoaPods 相关 |[**cocoapods-plugins**](./iOSNote/CocoaPods/cocoapods-plugins.md)<br>[提交开源框架之流程](./iOSNote/CocoaPods/cocoapods-podspec.md)<br>[管理库的使用技巧](./iOSNote/CocoaPods/cocoapods-podspec.md)<br>[私有源组件化及podfile总结](./iOSNote/CocoaPods/Podfile.md)<br>[私有库参考Demo](https://github.com/DevDragonLi/iOSDevDemo/tree/master/1-DevDemo/PodPrivate_demo)<br>[podspec总结](./iOSNote/CocoaPods/podspec.md)|
 |开源框架|**[WiFi显示图片高清图;蜂窝显示图片缩略图解析](./iOSNote/Analyze/SDWebImage/网络网络状态不同加载图片.md)**<br>**[MJRefresh源码解析](./iOSNote/Analyze/MJRefresh/MJRefresh.md)**|
 
 ## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
 
 </p>
-<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300"><img src="./images/wechat.JPG" width="300" height="300">
+<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">      <img src="./images/wechat.JPG" width="300" height="300">
 </p>
 
 ## 欢迎提交 PR / issue
