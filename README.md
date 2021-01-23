@@ -1,33 +1,33 @@
-# iOS Interviews,DevNotes 
+# iOS Interviews DevNotes 
 
-</p>
 <p align='left'>
+
 <img src="https://img.shields.io/github/stars/DevDragonLi/iOSInterviewsAndDevNotes.svg">
 <img src="https://img.shields.io/github/forks/DevDragonLi/iOSInterviewsAndDevNotes.svg">
 <img src="https://img.shields.io/badge/platform-iOS-ff69b4.svg">
 <img src="https://img.shields.io/badge/PR-welcome%20!-brightgreen.svg?colorA=a0cd34">
 <img src="https://img.shields.io/packagist/l/doctrine/orm.svg">
+
 </p>
 
 > 聚焦于**iOS开发面试题和开发笔记** 
 
 > 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹🤝。
 
-<img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg" width="688" height="211">
+<img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg" width="520" height="220">
 
 - **[iOSDevNote](#iOSDevNote)**
 - **[Git，markdown ,shell相关已迁移此处](https://github.com/DevDragonLi/DevelopBaseNote)**
 
 ## <a name="iOSinterview"></a> iOS面试题目列表
 
-> **已是迄今为止东半球收集并整理参考解答最为全的面试题集合**
+> **是迄今为止东半球收集并整理参考解答最为全的面试题集合**
 
 >  **整理不易：本作品采用知识共享署名 4.0 国际许可协议进行许可，转载时请注明原文链接，并保留全部内容！！！**
 
-> ① 温馨提示：可任意份点进，文档均提供`上/下一份`超链方便查阅，并提供大纲超链😁。
+- 温馨提示1️⃣：可任意份点进文档均提供`上/下一份`超链方便查阅，并提供大纲超链😁。
 
-> ② 已更新并整理`参考答案` 默认`折叠`展示（点击可查阅）
-
+- 温馨提示1️⃣：已更新并整理`参考答案` 默认`折叠`展示（点击可查阅）
 
 1. [一份"有点难"的iOS面试题MrPeak2016年:参考答案完整✅](./interview-iOS/01一份"有点难"的iOS面试题MrPeak2016年.md)
 2. [interview-iOS-2:参考答案完整✅](./interview-iOS/02interview-iOS-2.md)                   
@@ -71,7 +71,7 @@
 ## 赞赏一下旺仔(收集整理不易，且赞且珍惜)
 
 </p>
-<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="300" height="300">      <img src="./images/wechat.JPG" width="300" height="300">
+<img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/18ff90e4c8344f86aa69c34065bb379a~tplv-k3u1fbpfcp-zoom-1.image" width="200" height="200"> <img src="./images/wechat.JPG" width="200" height="200">
 </p>
 
 ## 欢迎提交 PR / issue
