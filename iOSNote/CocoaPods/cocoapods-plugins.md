@@ -1,9 +1,8 @@
 ## cocoapods plugins
 
-
 > sudo gem update --system
 
-> podfile ： plugin 'plugin name'
+> User：【podfile ： plugin 'plugin name'】
 
 > install：`$ sudo gem plugin name`
 
@@ -14,16 +13,18 @@
 
 ### [cocoapods-binary ](https://github.com/leavez/cocoapods-binary/)
 
+> 构建二进制适合本地Debug使用
+
 - remote pod transfer to framework
 
 - sudo gem install cocoapods-binary 
 
 ### [cocoapods-pod-merge](https://github.com/grab/cocoapods-pod-merge)
 
-- group 业务拆分组合划分层
+> group Pod组件合并插件
 
 <details>
-<summary> 点击展开 </summary>
+<summary> 点击展开示例说明 </summary>
 
 > pod install 源码OK，二进制需要对应remote自身再桥接。
 
@@ -55,7 +56,7 @@ end
 
 ### [pod-dependencies](https://github.com/segiddins/cocoapods-dependencies)
 
-> dependencies 
+> dependencies:分析当前组件依赖细节
 
 - sudo gem install cocoapods-dependencies
 
@@ -67,6 +68,8 @@ end
 ### [cocoapods-packager](https://github.com/CocoaPods/cocoapods-packager)
 
 > 只适用于远端库（本质从远端clone再处理）
+
+> M1并无适配及产物架构不可自定义，不建议使用！
 
 - sudo gem install  cocoapods-packager
 
