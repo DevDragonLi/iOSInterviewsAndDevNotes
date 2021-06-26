@@ -10,14 +10,20 @@
 
 </p>
 
-### [B站视频部分专题讲解直达链接](https://space.bilibili.com/108575967/video)
+## [B站iOS视频讲解直达链接](https://space.bilibili.com/108575967/video)
 
+### 组件化专题
+
+- 你负责的项目是否需要组件开发？
+组件开发实现方式三种技术方案&生命周期管理&通信历程解析&通信方案（中间件）
+- 移动端 APP 通用型 架构 示意图及概述说明
+- 公司多产品线APP组装示意图 && iOS通用型多项目整体结构图& 示例组件模板仓库结构图
+- 多项目组件化简化示意结构图（二进制，源码，源码映射等相关） & 三方公用库统一方案
+- 整体流程示例演示
 
 > 聚焦于**iOS开发面试题和开发笔记** 
 
 > 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹🤝。
-
-<img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg" width="520" height="220">
 
 - **[iOSDevNote](#iOSDevNote)**
 - **[Git，markdown ,shell相关已迁移此处](https://github.com/DevDragonLi/DevelopBaseNote)**
@@ -80,3 +86,6 @@
 ## 欢迎提交 PR / issue
 
 > **Dragonli_52171@163.com**
+
+
+<img src="https://starcharts.herokuapp.com/DevDragonLi/iOSDevNotesAndInterviews.svg" width="520" height="220">
