@@ -10,23 +10,16 @@
 
 </p>
 
-## [B站iOS视频讲解直达链接](https://space.bilibili.com/108575967/video)
-
-### 组件化【[组件化综述一PDF](./Bilibili/组件化综述一.pdf)】
-
-- 你负责的项目是否需要组件开发？
-组件开发实现方式三种技术方案&生命周期管理&通信历程解析&通信方案（中间件）
-- 移动端 APP 通用型 架构 示意图及概述说明
-- 公司多产品线APP组装示意图 && iOS通用型多项目整体结构图& 示例组件模板仓库结构图
-- 多项目组件化简化示意结构图（二进制，源码，源码映射等相关） & 三方公用库统一方案
-- 整体流程示例演示
-
 > 聚焦于**iOS开发面试题和开发笔记** 
 
 > 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹🤝。
 
 - **[iOSDevNote](#iOSDevNote)**
 - **[Git，markdown ,shell相关已迁移此处](https://github.com/DevDragonLi/DevelopBaseNote)**
+
+## [B站iOS视频讲解直达链接](https://space.bilibili.com/108575967/video)
+
+- 视频相关资料[请点这里](./Bilibili)
 
 ## <a name="iOSinterview"></a> iOS面试题目列表
 
@@ -72,7 +65,7 @@
 | CATEGORY | FILENAME |  
 |:----|:----|
 |iOS技能图谱/技术栈|[iOS技能图谱-byStuQ](./iOSNote/map-MobileDev-iOSDev.md)                          <br>[JSPatch作者博客中的技能栈-图](./images/iOS/iOSDev-bang.png)|
-|iOS开发相关shell脚本|[Pod自动化更新脚本&&组件校验脚本](https://github.com/DevDragonLi/DevelopBaseNote#shell)<br>[项目依赖子组件批量更新克隆脚本](https://github.com/DevDragonLi/DevelopBaseNote#shell)|
+|iOS开发相关shell脚本|[组件自动化更新&&组件校验脚本](https://github.com/DevDragonLi/DevelopBaseNote#shell)<br>[多项目批量更新检出脚本](https://github.com/DevDragonLi/DevelopBaseNote#shell)|
 |iOSDevNote|[**东半球效率最高的iOS组件通信中间件**](https://github.com/DevDragonLi/ProtocolServiceKit)<br>[**DarkMode适配组件**](https://github.com/DevDragonLi/LFLDarkModeKit)<br>[iOS项目完全解耦**Debug菜单中心组件**](https://github.com/DevDragonLi/iOSDebugKit)<br>[**iOS开发架构分享文稿**](./iOSNote/iOS_architecture.pdf)<br>[**掘金客户端体积瘦身**](./iOSNote/iOSAppThin.md)<br>[**iOSDevCodeRepo**](https://github.com/DevDragonLi/iOSDevDemo)<br>[Core Animation框架结构及性能调优11张大图详解](https://github.com/DevDragonLi/Core-AnimationPerformanceOptimization)<br>[iOS_StaticLibrary](./iOSNote/iOS_StaticLibrary.md)<br>[iOS经典Crash分析与总结- QQ`MelonTeam`](https://github.com/DevDragonLi/iOSDevDemo)<br>[iOS核心动画高级技巧阅读笔记(**性能调优**,**高效绘制**,**图像IO**,**图层性能**)](./iOSNote/iOSCoreAnimationNote.md)<br>[单元测试概述](./iOSNote/UnitTesting.md)|
 |CocoaPods |[**cocoapods Install [已适配M1]**](./iOSNote/CocoaPods/cocoapods.md)<br>[**cocoapods-plugins：插件汇总**](./iOSNote/CocoaPods/cocoapods-plugins.md)<br>[开源组件之开发流程](./iOSNote/CocoaPods/cocoapods-pod.md)<br>[管理库的使用技巧](./iOSNote/CocoaPods/cocoapods-pod.md)<br>[公司内部组件化开发参考基础文档](./iOSNote/CocoaPods/cocoapods-PodFile&spec.md)<br>[私有库参考Demo](https://github.com/DevDragonLi/iOSDevDemo/tree/master/1-DevDemo/PodPrivate_demo)<br>[Podspec语法说明及PodFile使用汇总](./iOSNote/CocoaPods/cocoapods-PodFile&spec.md)|
 |开源框架|**[WiFi显示图片高清图;蜂窝显示图片缩略图解析](./iOSNote/Analyze/SDWebImage/网络网络状态不同加载图片.md)**<br>**[MJRefresh源码解析](./iOSNote/Analyze/MJRefresh/MJRefresh.md)**|
