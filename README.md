@@ -15,11 +15,17 @@
 > 如果你觉得此仓库对你有价值，欢迎 star/fork，蟹蟹🤝。
 
 - **[iOSDevNote](#iOSDevNote)**
-- **[Git，markdown ,shell相关已迁移此处](https://github.com/DevDragonLi/DevelopBaseNote)**
+- **[Git，MarkDown ,Shell等点此处跳转](https://github.com/DevDragonLi/DevelopBaseNote)**
 
-## [B站iOS视频讲解直达链接](https://space.bilibili.com/108575967/video)
+## B站iOS开发相关视频
 
-- 视频相关资料[请点这里](./Bilibili)
+> [作者B站首页视频点此可一览目录](https://space.bilibili.com/108575967/video)
+
+- [iOS面试知识点备战规划2021版](https://www.bilibili.com/video/BV1YU4y157zn/)
+- [**iOS端组件化整套技术方案概述**](https://www.bilibili.com/video/BV1Kw411o7Za/)
+- [面试高频六大设计原则及常见设计模式解析](https://www.bilibili.com/video/BV1v44y1q75D/)
+- [iOS开发之设计一套暗黑模式组件【框架思维及iOS关联对象项目运用】](https://www.bilibili.com/video/BV1p64y1B7bb/)
+- 视频相关文档资料等[请点这里](./Bilibili)
 
 ## <a name="iOSinterview"></a> iOS面试题目列表
 
