@@ -63,7 +63,7 @@
 25. [小米百度bigo滴滴快手等iOS面试题2020年上：参考答案补充完善中🚀](./interview-iOS/25小米百度bigo滴滴快手等iOS面试题2020年上.md)
 26. [腾讯iOS六轮面试分享2020年](./interview-iOS/26腾讯iOS六轮面试分享2020年.md)
 27. [抖音快手等面试题2020年9月](./interview-iOS/27抖音快手等面试题2020年9月.md)
-
+28. [字节iOS面试题](./interview-iOS/字节_面试.pdf)
 
 ## <a name="iOSDevNote"></a> iOSDevNote
 
